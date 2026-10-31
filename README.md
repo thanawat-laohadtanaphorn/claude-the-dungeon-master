@@ -44,12 +44,26 @@ Tap any character for their panel (spells, abilities, gear and bag), or open the
 - 🎚️ **Level-up interviews:** Claude never picks your choices for you.
 - ✅ **A pre-post checklist** Claude runs before every story post.
 
-## Quick start
+## Quick start 🚀
 
-1. Create a project in [Claude](https://claude.ai) (the scene map needs Artifacts and code execution turned on).
-2. Paste [`project-instructions.md`](project-instructions.md) into the project's instructions.
-3. Upload `house-rules.md`, `guides/`, `templates/`, `scene-map/` and `tools/` to the project's files.
-4. Start a chat: **"Let's make my character."** Claude will build your hero with you, then interview you for main quest 1.
+**1. Download the kit.** On this page, click the green **Code** button, then **Download ZIP**. Unzip it. You'll get a folder called `claude-the-dungeon-master-main`.
+
+**2. Create a project in [Claude](https://claude.ai).** Open **Projects**, click **New project**, and:
+- **Name:** anything you like, e.g. *Claude the Dungeon Master*.
+- **Context:** click **+** and add the unzipped `claude-the-dungeon-master-main` folder.
+- Click **Create project**.
+
+<p align="center"><img src="docs/new-project.png" width="480" alt="New project dialog: name Claude the Dungeon Master, with the claude-the-dungeon-master-main folder added as context"></p>
+
+For the best results, also paste the text of [`project-instructions.md`](project-instructions.md) into the project's instructions, so Claude follows them in every chat. Make sure Artifacts and code execution are turned on, because the scene map needs them.
+
+**3. Start your first chat.** Type:
+
+> **Let's create a new character.**
+
+Claude will build your hero with you step by step, then interview you about main quest 1. After that, the adventure begins.
+
+<p align="center"><img src="docs/first-prompt.png" width="480" alt="The project's first chat, with the prompt: create a new character"></p>
 
 ## How a campaign runs
 
