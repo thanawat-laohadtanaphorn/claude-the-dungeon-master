@@ -58,6 +58,8 @@ Tap any character for their panel (spells, abilities, gear and bag), or open the
 
 For the best results, also paste the text of [`project-instructions.md`](project-instructions.md) into the project's instructions, so Claude follows them in every chat. Make sure Artifacts and code execution are turned on, because the scene map needs them.
 
+**Pick the model.** Use **Claude Opus** at **medium effort or above**. A DM juggles rules, positions, HP and story in every post, and lower effort tends to slip on those (wrong slot counts, missed reactions, map numbers that don't match). In a project with threads, set this for every thread, story threads included.
+
 **3. Start your first chat.** Type:
 
 > **Let's create a new character.**
