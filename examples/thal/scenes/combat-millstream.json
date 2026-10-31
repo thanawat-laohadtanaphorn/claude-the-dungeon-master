@@ -1,0 +1,223 @@
+{
+ "title": "The old millstream",
+ "mode": "combat",
+ "time": "Day 21 · ~1:30 pm",
+ "status": "<b>Round 2.</b> Thal Misty Stepped onto the dike and ran east after the rider. Sim Rook, still ducking low, kept his stumbling horse at a gallop; he's now about 320 ft from Holt, at the very edge of crossbow range.",
+ "neutralLabel": "Others",
+ "pens": [],
+ "map": [
+  "gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+  "gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+  "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+  "mmmTmmmmmmmmmmTmmmmmmmTmmmmmTmmmmmmmmmmTmmmmmmmTmmmTmmmmmmmmTmmmmmmmmTmm",
+  "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+  "rrrrr~~rrrrrrrr~~~rrrrrrrrrr~~~rrrrrrrrrrr~~rrrrrrrrrr~~~rrrrrrrrrr~~rrr",
+  "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+  "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+  "~~~PPPP~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+  "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+  "rrr~~~rrrrrrrrr~~~rrrrrrrrrrrr~~rrrrrrrrr~~~rrrrrrrr~~rrrrrrrrr~~~rrrrrr",
+  "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+  "aaarraaaaarraaaaaaarraaaaaaarraaaaaaaarraaaaaaaaaaaaarraaaaaaaaaarraaaaa",
+  "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+ ],
+ "labels": [
+  {
+   "x": 0.3,
+   "y": 2.7,
+   "text": "DIKE PATH",
+   "size": 9,
+   "color": "#2B1B17"
+  },
+  {
+   "x": 71.8,
+   "y": 1.6,
+   "text": "TO THE OLD PEAT ROAD →",
+   "size": 9,
+   "anchor": "end",
+   "color": "#2B1B17"
+  },
+  {
+   "x": 71.8,
+   "y": 7.7,
+   "text": "DOWNSTREAM TO MOSSEND →",
+   "size": 9,
+   "anchor": "end",
+   "color": "#F8B848"
+  },
+  {
+   "x": 0.3,
+   "y": 6.7,
+   "text": "← FROM THE MILL",
+   "size": 9,
+   "color": "#F3E4D6"
+  }
+ ],
+ "tokens": [
+  {
+   "id": "sim_rook",
+   "name": "Sim Rook",
+   "short_name": "Sim Rook",
+   "img": "sim_rook",
+   "side": "foe",
+   "x": 69,
+   "y": 2,
+   "ac": 13,
+   "health": "Badly hurt",
+   "role": "Lady Pell's rider",
+   "note": "On a black horse (Large): BR3 to BS4. The horse is barely standing but still galloping. Sim is ducking low (Dodge).",
+   "conds": [],
+   "tags": [
+    "Mounted",
+    "Dodging",
+    "Horse badly hurt",
+    "Horse: Slayer's Prey"
+   ],
+   "size": 2
+  },
+  {
+   "id": "teal",
+   "name": "Teal",
+   "short": "TE",
+   "img": "teal",
+   "side": "ally",
+   "x": 3,
+   "y": 8,
+   "ac": 11,
+   "role": "Agna's son, punt guide",
+   "note": "Holding the punt steady.",
+   "conds": [],
+   "tags": []
+  },
+  {
+   "id": "holt",
+   "name": "Holt",
+   "short": "HO",
+   "img": "holt",
+   "side": "ally",
+   "x": 4,
+   "y": 8,
+   "hp": "46/46",
+   "ac": 18,
+   "speed": 30,
+   "role": "Fighter 5 (Champion)",
+   "tags": [],
+   "note": "Light crossbow loaded (one shot per turn).",
+   "conds": [],
+   "res": {
+    "Second Wind": "1/1",
+    "Action Surge": "1/1",
+    "Hit Dice": "5/5"
+   }
+  },
+  {
+   "id": "thal",
+   "name": "Thal",
+   "short": "TH",
+   "img": "thal",
+   "side": "ally",
+   "x": 23,
+   "y": 2,
+   "hp": "41/41",
+   "ac": 15,
+   "speed": 30,
+   "role": "Wizard 5 (Abjuration)",
+   "tags": [
+    "Mage Armor",
+    "Arcane Ward 14/14"
+   ],
+   "note": "Misty Stepped onto the dike, then Dashed east. Slots 1st 3/5, 2nd 3/4, 3rd 2/3.",
+   "conds": [],
+   "invisible": false,
+   "res": {
+    "1st": "3/5",
+    "2nd": "3/4",
+    "3rd": "2/3",
+    "Arcane Ward": "14/14",
+    "Arcane Recovery": "1/1",
+    "Hit Dice": "5/5"
+   }
+  },
+  {
+   "id": "wren",
+   "name": "Wren",
+   "short": "WR",
+   "img": "wren",
+   "side": "ally",
+   "x": 6,
+   "y": 8,
+   "hp": "19/34",
+   "ac": 15,
+   "speed": 30,
+   "role": "Ranger 4 (Monster Slayer)",
+   "tags": [],
+   "note": "Longbow hit the horse for 11. Slayer's Prey on the horse. 1st 3/3.",
+   "conds": [],
+   "res": {
+    "1st": "3/3",
+    "Hunter's Sense": "2/2",
+    "Favored Foe": "2/2",
+    "Speak with Animals (free cast)": "1/1",
+    "Hit Dice": "4/4"
+   }
+  }
+ ],
+ "terrain": {
+  "g": {
+   "name": "Wet meadow (open ground)",
+   "fill": "#8A9A5A",
+   "ink": "#7A8A4A"
+  },
+  "d": {
+   "name": "Dike path, raised earth bank (open; good footing)",
+   "fill": "#B89A6A",
+   "ink": "#8A7048"
+  },
+  "m": {
+   "name": "Bank slope, mud (difficult terrain)",
+   "fill": "#6A5E44",
+   "ink": "#54483A"
+  },
+  "T": {
+   "name": "Willow on the bank (half cover)",
+   "fill": "#5E5038",
+   "ink": "#2E4A22",
+   "dot": "#7E9A52"
+  },
+  "r": {
+   "name": "Reed bed in shallow water (difficult terrain; lightly obscured)",
+   "fill": "#5A6A3A",
+   "ink": "#8A9A5A",
+   "mark": "reeds"
+  },
+  "~": {
+   "name": "Old millstream, slow current (swim; difficult terrain)",
+   "fill": "#3E5A5A",
+   "ink": "#4E6A6A"
+  },
+  "P": {
+   "name": "Agna's punt, scorched but afloat (wooden; difficult terrain)",
+   "fill": "#7A5A38",
+   "ink": "#4A3420",
+   "mark": "planks"
+  },
+  "a": {
+   "name": "Alder carr, wet woodland (difficult terrain; lightly obscured)",
+   "fill": "#4A5A34",
+   "ink": "#33421F",
+   "mark": "reeds"
+  }
+ },
+ "selected": "holt",
+ "round": 2,
+ "order": [
+  "wren",
+  "thal",
+  "sim_rook",
+  "holt",
+  "teal"
+ ],
+ "active": "holt"
+}

@@ -1,0 +1,97 @@
+{
+  "title": "The cellar",
+  "mode": "explore",
+  "time": "Day 1 · evening",
+  "status": "A low cellar under the inn. Barrels by the far wall.",
+  "neutralLabel": "Others",
+  "pens": [],
+  "map": [
+    "##########",
+    "#ffffffff#",
+    "#fftfffff#",
+    "#ffffffff+",
+    "#ffffBfff#",
+    "#ffffffff#",
+    "####=#####"
+  ],
+  "labels": [
+    {
+      "x": 4.5,
+      "y": 6.7,
+      "text": "STAIRS UP",
+      "size": 9,
+      "color": "#F8F0E0"
+    }
+  ],
+  "terrain": {
+    "#": {
+      "name": "Stone wall (blocks movement and sight)",
+      "fill": "#4A4038",
+      "ink": "#3A322C"
+    },
+    "f": {
+      "name": "Flagstone floor (open ground)",
+      "fill": "#B8A888",
+      "ink": "#A89878"
+    },
+    "t": {
+      "name": "Table (half cover)",
+      "fill": "#7A5A3A",
+      "ink": "#5A3A22",
+      "mark": "planks"
+    },
+    "B": {
+      "name": "Barrels (three-quarters cover)",
+      "fill": "#8A6A44",
+      "ink": "#5A4428",
+      "dot": "#5A4428"
+    },
+    "+": {
+      "name": "Door (closed)",
+      "fill": "#9A6A3A",
+      "ink": "#5A3A1A",
+      "mark": "planks"
+    },
+    "=": {
+      "name": "Stairs up",
+      "fill": "#A89070",
+      "ink": "#6A5A44",
+      "mark": "ladder"
+    }
+  },
+  "tokens": [
+    {
+      "id": "hero",
+      "name": "Hero",
+      "img": "hero",
+      "side": "ally",
+      "x": 2,
+      "y": 3,
+      "hp": "10/10",
+      "ac": 12,
+      "role": "Wizard 1",
+      "tags": [],
+      "conds": [],
+      "note": "Slots 1st 2/2."
+    },
+    {
+      "id": "rat_swarm",
+      "name": "Swarm of rats",
+      "short_name": "Rats",
+      "img": "rats",
+      "side": "foe",
+      "x": 6,
+      "y": 4,
+      "ac": 10,
+      "health": "Unhurt",
+      "role": "Swarm",
+      "count": 1,
+      "conds": [],
+      "tags": []
+    }
+  ],
+  "selected": "hero",
+  "round": 0,
+  "order": [],
+  "active": ""
+}

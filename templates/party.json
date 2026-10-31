@@ -1,0 +1,81 @@
+{
+  "_about": "Character panels for the scene map. Per character: role, stats, resources (counters), slots, use (kind = action | bonus | reaction | free | rest; spells carry lvl, 0 = cantrip; needs names a resource), passive, spellbook (known, not prepared), equipped, inventory. shared = the Party pack. Every entry has an icon emoji.",
+  "asof": "Day 1",
+  "effects": {
+    "Mage Armor": "AC 13 + DEX for 8 hours. Ends if the target dons armor."
+  },
+  "shared": {
+    "inventory": [
+      {
+        "name": "Party purse: 10 gp",
+        "text": "",
+        "icon": "💰"
+      }
+    ]
+  },
+  "chars": {
+    "hero": {
+      "role": "Class 1 · Subclass",
+      "stats": [
+        "STR 10 (+0)",
+        "DEX 14 (+2)",
+        "CON 12 (+1)",
+        "INT 16 (+3)",
+        "WIS 12 (+1)",
+        "CHA 8 (-1)"
+      ],
+      "resources": [
+        {
+          "name": "Hit Dice",
+          "icon": "🎲",
+          "left": 1,
+          "max": 1,
+          "unit": "d8",
+          "text": "Spend during a short rest."
+        }
+      ],
+      "slots": [
+        {
+          "lvl": "1st",
+          "left": 2,
+          "max": 2
+        }
+      ],
+      "use": [
+        {
+          "name": "Fire Bolt",
+          "icon": "🔥",
+          "kind": "action",
+          "lvl": 0,
+          "tag": "Cantrip · 120 ft",
+          "text": "+5 to hit, 1d10 fire."
+        },
+        {
+          "name": "Shield",
+          "icon": "🛡️",
+          "kind": "reaction",
+          "lvl": 1,
+          "tag": "Reaction · 1st",
+          "text": "+5 AC until the start of your next turn."
+        }
+      ],
+      "passive": [],
+      "spellbook": [],
+      "equipped": [
+        {
+          "slot": "Main hand",
+          "name": "Quarterstaff",
+          "text": "1d6 bludgeoning.",
+          "icon": "🪄"
+        }
+      ],
+      "inventory": [
+        {
+          "name": "Potion of healing",
+          "text": "2d4+2.",
+          "icon": "🧪"
+        }
+      ]
+    }
+  }
+}

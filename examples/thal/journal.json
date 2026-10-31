@@ -1,0 +1,220 @@
+{
+ "_about": "Scene map journal. PLAYER-FACING ONLY: what Thal knows, no DM secrets, nothing from .dm/. Update after scenes that change a quest. Each entry: title, icon, text (what Thal knows), next (next step), where, people (portrait ids from portraits/flat/, shown as small faces), status: active | done. Loose ends = open threads Thal noticed but hasn't followed up (scope still TBD with Thanawat). Growth rules (Oct 25): only active entries show open. status 'hold' folds into On hold. Loose ends show the newest `loose_limit` (6), newest first in the list; older ones fold away automatically. Resolved loose ends are deleted (or become a quest). Done entries carry `chapter` and fold per chapter; when a main-quest chapter ends, squash its Done list into one summary line.",
+ "asof": "Day 21, late morning (the drowned mill)",
+ "main": [
+  {
+   "title": "The Drowning Night",
+   "icon": "🌑",
+   "status": "active",
+   "text": "Granny Rush: on the dark of the moon (tomorrow night, day 22) Sedge will go to the Drowned Ring to wake her sisters, Moss and Weed. She needs the Warden dead, or innocent voices singing the twisted lullaby at the Ring: the children with the threads.",
+   "next": "Protect the children and the Warden; gather voices who know the true verse; meet Bors in Mossend.",
+   "where": "The Drowned Ring",
+   "people": [
+    "lady_pell"
+   ]
+  },
+  {
+   "title": "The missing children of the Reedmarch",
+   "icon": "⭐",
+   "status": "active",
+   "text": "Cal (Wren's brother), Pip (Agna's granddaughter), Dobb, Moll and Fen were taken from the reed villages and caged at the Drowned Ring. On day 18 the party freed all five; Pip's ribbon broke the Ring's charm on her. Lady Pell was Mother Sedge, a green hag, all along, and her horn has sounded: she knows the cages are empty.",
+   "next": "All five are safe in Mossend. Cal and Pip are with family; Dobb, Moll and Fen still need taking home to their villages.",
+   "where": "Mossend",
+   "people": [
+    "wren",
+    "cal",
+    "pip",
+    "dobb",
+    "moll",
+    "fen",
+    "teal"
+   ]
+  },
+  {
+   "title": "Keep the Old One alive",
+   "icon": "🐢",
+   "status": "active",
+   "text": "The Old Warden lies on \"the three below\". If it dies, they rise, and Lady Pell wants exactly that. The Pikes have turned and won't hunt it, but its neck wound from Pell's riders still bleeds.",
+   "next": "Make sure no new hunters reach the wallow. Pell has sent a purse to Pell's Landing to hire more swords, maybe arriving by tomorrow night.",
+   "where": "The Old One's wallow, Sunk Mire",
+   "people": [
+    "bors",
+    "lady_pell"
+   ]
+  },
+  {
+   "title": "Show the Reedmarch who Lady Pell really is",
+   "icon": "🪞",
+   "status": "active",
+   "text": "Bors wants public proof before he moves against her: the children themselves, or her true face. She goes down to the undercroft alone every night without a light, and the key is always on her belt. The children's shoes were seen down there. Day 20: Varrick, captain of Pell's Grey Hounds, carried written orders under her green P seal: bring the five back living, and burn Mossend if they didn't come.",
+   "next": "Bors is on his way (Pim rode for him). Granny Rush says Sedge keeps the mirrors at Pell Hall draped because an old tale says plain glass or still water shows a hag's true face.",
+   "where": "Pell Hall",
+   "people": [
+    "lady_pell",
+    "corlis",
+    "bors"
+   ]
+  }
+ ],
+ "side": [
+  {
+   "title": "The missing verse",
+   "icon": "🎶",
+   "status": "active",
+   "text": "Gran's lullaby opened the shrine at the old stones. Granny Rush of the drowned mill sang the missing verse on day 21: \"Sink, sisters, sink, where the black stones go, / Moss and Weed and Sedge, lie still, lie low. / Root on root and shell on stone, / Sleep, Warden, sleep, you do not sleep alone.\"",
+   "next": "Granny Rush says: sung over a thread-touched child by their own kin, it cuts the thread. Sung by many voices at the Drowned Ring, the Warden wakes strong and the sisters' shared magic falters.",
+   "where": "The drowned mill",
+   "people": [
+    "wren"
+   ]
+  },
+  {
+   "title": "Bring Cal home to Hesper",
+   "icon": "🏠",
+   "status": "active",
+   "text": "Hesper Fennick, reeve of Fennick's Reach and Wren's mother, asked Thal to bring her boy home. She promised him a roof in the Reedmarch.",
+   "next": "Cal is safe in Mossend with Wren. Take him on home to Fennick's Reach.",
+   "where": "Fennick's Reach",
+   "people": [
+    "wren"
+   ]
+  },
+  {
+   "title": "Bring Pip home to Agna",
+   "icon": "🏠",
+   "status": "done",
+   "text": "Agna Rusk, reeve of Mossend: \"Bring my Pip home. All of them. And mind the water when it sings.\" Day 20: Pip is home with Agna.",
+   "next": "Rescue Pip from the Drowned Ring.",
+   "where": "Mossend",
+   "people": [
+    "agna"
+   ],
+   "chapter": "Main quest 2"
+  },
+  {
+   "title": "The last Choir cells",
+   "icon": "🔥",
+   "status": "active",
+   "text": "Before he died, Corvin named the Choir's paymaster, Hollin of the Cinder Inn at Sallow Ford, and two cells farther east: the Ashwell chapel at Varn, and Orrin, a smith in Kettleby.",
+   "next": "Nothing planned yet.",
+   "where": "Varn and Kettleby, to the east",
+   "people": []
+  },
+  {
+   "title": "Find Familiar",
+   "icon": "🦉",
+   "status": "done",
+   "text": "Thal has the charcoal, herbs and brass brazier for Find Familiar. He's still missing the incense. Odda doesn't stock any. Day 21: Granny Rush gave Thal resin incense. The set is complete (charcoal, herbs, incense, brazier).",
+   "next": "Cast it as a ritual (1 hour) when there's time.",
+   "where": "Mossend",
+   "people": [
+    "odda"
+   ],
+   "chapter": "Main quest 2"
+  }
+ ],
+ "loose": [
+  {
+   "title": "Pell's mirror and the green bead",
+   "icon": "🪞",
+   "status": "active",
+   "text": "Thal carries Pell's silver scrying glass, knotted in black silk, and the bead that kept Tamsin charmed. The bead hums the water-song. When uncovered, the Lady can look through the glass.",
+   "people": []
+  },
+  {
+   "title": "Wren's fish whistle",
+   "icon": "🐟",
+   "status": "active",
+   "text": "The little wooden fish Wren carved for Cal was found in Pell's cart. Pim hung it on the nail by his bunk in the Pell Hall stable loft.",
+   "people": [
+    "wren"
+   ]
+  },
+  {
+   "title": "The singing under the kitchen floor",
+   "icon": "🎵",
+   "status": "active",
+   "text": "Pell Hall's servants hear singing come up through the kitchen floor at night. Cook says it's the drains.",
+   "people": []
+  },
+  {
+   "title": "Lamp oil from Pell's Landing",
+   "icon": "🏺",
+   "status": "active",
+   "text": "The mire brute's oil jars were stamped TOLLY · PELL'S LANDING, with a candle-and-anchor chandler's mark.",
+   "people": []
+  },
+  {
+   "title": "The Hound who got away",
+   "icon": "🌊",
+   "status": "active",
+   "text": "One of Varrick's Grey Hounds swam off west from Mossend into the dark on day 20. He'll likely run to Pell.",
+   "people": [
+    "grey_hounds"
+   ]
+  },
+  {
+   "title": "Varrick's grey bundle",
+   "icon": "🪞",
+   "status": "active",
+   "text": "A hag's hand mirror like Pell's silver glass. Its eye is blind while wrapped, but its hum is a lure that tugs at the rescued children. Thal hid it, wrapped in extra layers, in Mossend's burned stilt house.",
+   "people": [
+    "varrick",
+    "agna"
+   ]
+  },
+  {
+   "title": "Brackwater landing",
+   "icon": "🛶",
+   "status": "active",
+   "text": "Varrick's orders said to bring the children to Brackwater landing, not to the Hall.",
+   "people": [
+    "varrick"
+   ]
+  },
+  {
+   "title": "Threads on the children",
+   "icon": "🧵",
+   "status": "active",
+   "text": "Detect Magic showed a faint enchantment thread, left by the Ring's song, on Moll, Dobb and Fen (Cal was out of range). Pip has none: her ribbon glows with abjuration, but it did nothing for Moll. The threads went slack once the bundle was moved away.",
+   "next": "Have each child's kin sing the true verse over them: Moll and Fen's family at Tern Hollow, Dobb's at Gulley's Wick, Wren for Cal.",
+   "people": [
+    "moll",
+    "dobb",
+    "fen",
+    "pip"
+   ]
+  }
+ ],
+ "done": [
+  {
+   "title": "Main quest 1: the Frostmantle shards",
+   "icon": "❄️",
+   "text": "All three Ember shards destroyed. Corvin is dead (day 9).",
+   "chapter": "The Frostmantle shards",
+   "people": []
+  },
+  {
+   "title": "Rescued Tamsin from Pell Hall's tower",
+   "icon": "🗼",
+   "text": "Day 14. Her charm broke once the bead came off.",
+   "chapter": "The Reedmarch",
+   "people": []
+  },
+  {
+   "title": "Stood between the Old One and the spears",
+   "icon": "🐢",
+   "text": "Day 15. Bors and most of the Pikes grounded their pikes and turned against Pell.",
+   "chapter": "The Reedmarch",
+   "people": []
+  },
+  {
+   "title": "Unmasked the Beast of Mossend",
+   "icon": "🐊",
+   "text": "Day 12. It was a mire brute in disguise, sent by whoever watched through the mirror.",
+   "chapter": "The Reedmarch",
+   "people": []
+  }
+ ],
+ "loose_limit": 6
+}
