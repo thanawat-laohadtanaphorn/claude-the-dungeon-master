@@ -37,6 +37,7 @@ Tap any character for their panel (spells, abilities, gear and bag), or open the
 - 📜 **Main quests with direction:** by default every main quest has 3 stages and at least one twist, the first is about your hero, and later ones are about a companion or familiar. Before each one, Claude interviews you (you can change any of these defaults there) and drafts the whole quest in a hidden DM file, so the story never drifts.
 - 📖 **Quest journal** to track your quests: main quests, side quests and loose ends, each with what you know so far, the next step, where it leads and who's involved. Finished quests fold into Done, chapter by chapter. It's built into every scene map, and it only holds what your character knows, so there are no spoilers.
 - 🧵 **Thread naming** that tracks where you are: `1.3.2. Thal at Coldhearth` = main quest 1, stage 3, episode 2.
+- 🔁 **New episodes open themselves**: after about 20 turns (or at a new stage), Claude closes at a calm point and has the project's coordinator start the next thread with a full recap of HP, slots, position and quests. You just keep playing.
 - ⚔️ **Turn-by-turn combat:** your party acts one character at a time, and Claude waits for your orders. Enemies act on their own.
 - ⚖️ **Rules kept honest:** 5e 2014 (SRD 5.1). Anything illegal is flagged before the roll, with legal options.
 - 📋 **Party state file:** one JSON file holds HP, slots, resources and positions, and the map is built from it.
