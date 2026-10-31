@@ -49,24 +49,30 @@ Tap any character for their panel (spells, abilities, gear and bag), or open the
 
 **1. Download the kit.** On this page, click the green **Code** button, then **Download ZIP**. Unzip it. You'll get a folder called `claude-the-dungeon-master-main`.
 
-**2. Create a project in [Claude](https://claude.ai).** Open **Projects**, click **New project**, and:
+**2. Create a Claude project.** In [Claude](https://claude.ai), open **Projects** and click **New project**.
 - **Name:** anything you like, e.g. *Claude the Dungeon Master*.
 - **Context:** click **+** and add the unzipped `claude-the-dungeon-master-main` folder.
 - Click **Create project**.
 
-<p align="center"><img src="docs/new-project.png" width="480" alt="New project dialog: name Claude the Dungeon Master, with the claude-the-dungeon-master-main folder added as context"></p>
+**3. Paste the instructions.** Open the project's settings and paste the text of [`project-instructions.md`](project-instructions.md) (everything below its line) into the project instructions, so Claude follows them in every chat.
 
-For the best results, also paste the text of [`project-instructions.md`](project-instructions.md) into the project's instructions, so Claude follows them in every chat. Make sure Artifacts and code execution are turned on, because the scene map needs them.
+**4. Let Claude reach the internet for portraits.** Claude finds character portraits on Wikimedia Commons, and the default cloud environment blocks those sites.
+- Open **Project settings**, then the **Cloud environment** menu.
+- Click the gear beside the selected environment (or **Add cloud environment** if there is none yet).
+- Under **Network access**, choose **Limited** and add these two hosts to **Allowed domains**, keeping **Allow package managers** ticked:
+  - `commons.wikimedia.org`
+  - `upload.wikimedia.org`
+- Save. The change applies to chats started after it.
 
-**Pick the model.** Use **Claude Opus** at **medium effort or above**. A DM juggles rules, positions, HP and story in every post, and lower effort tends to slip on those (wrong slot counts, missed reactions, map numbers that don't match). In a project with threads, set this for every thread, story threads included.
+Skip this step if you'd rather give Claude your own pictures; it will crop whatever you send. See [Anthropic's network access docs](https://code.claude.com/docs/en/cloud-environments#network-access) for details.
 
-**3. Start your first chat.** Type:
+**5. Pick the model.** Use **Claude Opus** at **medium effort or above**. A DM juggles rules, positions, HP and story in every post, and lower effort tends to slip on those (wrong slot counts, missed reactions, map numbers that don't match). Set this for every thread, story threads included.
+
+**6. Send the first prompt.** In the project chat, type:
 
 > **Let's create a new character.**
 
-Claude will build your hero with you step by step, then interview you about main quest 1. After that, the adventure begins.
-
-<p align="center"><img src="docs/first-prompt.png" width="480" alt="The project's first chat, with the prompt: create a new character"></p>
+Claude builds your hero with you step by step, then interviews you about main quest 1. After that, the adventure begins in its own story thread. 🎲
 
 ## How a campaign runs
 
