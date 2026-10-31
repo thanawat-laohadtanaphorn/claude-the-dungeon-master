@@ -1,0 +1,780 @@
+{
+ "_about": "Character panels for the battle map. Mirror of thal-party-sheets.md: update whenever the sheets change. Per character: resources (counters), slots, use (things you can do; kind = action | bonus | reaction | free | rest; spells carry lvl, 0 = cantrip; `needs` names a resource), passive (always on), spellbook (known but not prepared), equipped, inventory. `shared` is the Party pack (its own panel). Per-fight counts go on the token as `res`, e.g. {\"1st\": \"4/6\", \"Action Surge\": \"0/1\"}.",
+ "asof": "Day 21 dawn (long rest at Mossend; Thal's bonus slots now +1)",
+ "shared": {
+  "inventory": [
+   {
+    "name": "Party purse: 144 gp, 291 sp, 56 cp",
+    "text": "Carried by Thal.",
+    "icon": "💰"
+   },
+   {
+    "name": "Rations ×40 (smoked eel)",
+    "text": "For 4 mouths.",
+    "icon": "🍞"
+   },
+   {
+    "name": "Horse feed",
+    "text": "2 days of oats (Agna Rusk) and 1 nosebag of grain (Ness's). Plus a nosebag of oats from Tobin's saddlebags.",
+    "icon": "🌾"
+   },
+   {
+    "name": "Mounts: Corvin's grey, a bay, a brown, Ness's dun (Pell's green P brand)",
+    "text": "With Turnip at the heron-tree copse, watched by Pim.",
+    "icon": "🐴"
+   },
+   {
+    "name": "Tobin's bay (Pell brand), saddle and saddlebags",
+    "text": "Taken at the eel-run end, day 16.",
+    "icon": "🐎"
+   },
+   {
+    "name": "For-sale pile on Turnip: Tobin's chain shirt and shield, Ness's longbow, lantern and hunting horn, 1 club",
+    "text": "Packed on Turnip, day 16, for Pim to sell (Market Prep). Brass Pell badge and 2 halters stay on the bay.",
+    "icon": "🎒"
+   },
+   {
+    "name": "On Turnip: Corvin's longsword",
+    "text": "Not for sale.",
+    "icon": "🫏"
+   },
+   {
+    "name": "On loan: Agna's reed punt, poled by Teal",
+    "text": "Waiting at Mossend.",
+    "icon": "🛶"
+   },
+   {
+    "name": "Hireling: Pim, stable and errand boy",
+    "text": "Hired day 16 for 25 sp a month, first month paid upfront; next pay due day 46. Handles market selling and shopping (trade-list.md). Non-combatant; carries a spear and a club.",
+    "icon": "🧑‍🌾"
+   },
+   {
+    "name": "Find Familiar set (charcoal, herbs, resin incense, brass brazier)",
+    "text": "Complete since day 21 (incense from Granny Rush). Ritual, 1 hour.",
+    "icon": "🦉"
+   },
+   {
+    "name": "Pell's letter of orders (green P seal)",
+    "text": "Taken from Varrick, day 20. Evidence.",
+    "icon": "📜"
+   }
+  ]
+ },
+ "effects": {
+  "Mage Armor": "AC 13 + DEX (15 for Thal) for 8 hours. Ends if he dons armor.",
+  "Arcane Ward": "Takes damage before Thal does. Abjuration spells refill it by 2 × the spell's level.",
+  "Hunter's Mark": "+1d6 on each weapon hit against the marked target (concentration).",
+  "Favored Foe": "+1d4 on the first hit each turn against the marked target (concentration).",
+  "Slayer's Prey": "+1d6 on the first weapon hit each turn against the marked target.",
+  "Invisibility": "Unseen until attacking or casting a spell (concentration).",
+  "Shield": "+5 AC until the start of his next turn.",
+  "Hidden": "Unseen; the first attack from hiding has advantage."
+ },
+ "chars": {
+  "thal": {
+   "role": "Wizard 5 · School of Abjuration",
+   "stats": [
+    "STR 12 (+1)",
+    "DEX 14 (+2)",
+    "CON 16 (+3)",
+    "INT 18 (+4)",
+    "WIS 12 (+1)",
+    "CHA 7 (−2)"
+   ],
+   "spellcasting": "INT · save DC 15 · spell attack +7",
+   "slots": [
+    {
+     "lvl": "1st",
+     "left": 5,
+     "max": 5
+    },
+    {
+     "lvl": "2nd",
+     "left": 4,
+     "max": 4
+    },
+    {
+     "lvl": "3rd",
+     "left": 3,
+     "max": 3
+    }
+   ],
+   "resources": [
+    {
+     "name": "Arcane Ward",
+     "icon": "🪬",
+     "left": 0,
+     "max": 14,
+     "unit": "HP",
+     "text": "A magic ward that takes damage before you do. Forms (14 HP) the first time you cast an abjuration spell of 1st level or higher after a long rest; later abjuration spells restore 2 × the spell's level."
+    },
+    {
+     "name": "Arcane Recovery",
+     "icon": "🔄",
+     "left": 1,
+     "max": 1,
+     "text": "Once a day, during a short rest, regain spent slots totalling up to 3 levels (none 6th or higher)."
+    },
+    {
+     "name": "Hit Dice",
+     "icon": "🎲",
+     "left": 5,
+     "max": 5,
+     "unit": "d6",
+     "text": "Spend during a short rest: roll 1d6 + 3 HP each."
+    }
+   ],
+   "use": [
+    {
+     "name": "Winter's Kiss",
+     "icon": "🗡️",
+     "kind": "action",
+     "tag": "Attack · melee or thrown 20/60",
+     "text": "+7 to hit, 1d4+4 piercing + 1d4 cold."
+    },
+    {
+     "name": "Fire Bolt",
+     "tag": "Action · 120 ft",
+     "text": "Ranged spell attack +7, 2d10 fire. Lights flammable objects, and grease (house rule).",
+     "icon": "🔥",
+     "kind": "action",
+     "lvl": 0
+    },
+    {
+     "name": "Ray of Frost",
+     "tag": "Action · 60 ft",
+     "text": "Ranged spell attack +7, 2d8 cold, and the target's speed drops by 10 ft until your next turn.",
+     "icon": "❄️",
+     "kind": "action",
+     "lvl": 0
+    },
+    {
+     "name": "Booming Blade",
+     "tag": "Action · melee",
+     "text": "Attack with Winter's Kiss. On a hit: normal damage +1d8 thunder, and if the target willingly moves before your next turn it takes 2d8 thunder.",
+     "icon": "💥",
+     "kind": "action",
+     "lvl": 0
+    },
+    {
+     "name": "Mage Hand",
+     "tag": "Action · 30 ft",
+     "text": "A spectral hand that can carry up to 10 lb, open doors and containers. Can't attack or use magic items. Lasts 1 minute.",
+     "icon": "✋",
+     "kind": "action",
+     "lvl": 0
+    },
+    {
+     "name": "Mage Armor",
+     "tag": "Action · touch · 8 hours",
+     "text": "AC becomes 13 + DEX (15 for Thal). Abjuration: forms or refills the Arcane Ward.",
+     "icon": "🛡️",
+     "kind": "action",
+     "lvl": 1
+    },
+    {
+     "name": "Magic Missile",
+     "tag": "Action · 120 ft",
+     "text": "Three darts that never miss, each 1d4+1 force. +1 dart per slot level above 1st.",
+     "icon": "✨",
+     "kind": "action",
+     "lvl": 1
+    },
+    {
+     "name": "Grease",
+     "tag": "Action · 60 ft · 1 minute",
+     "text": "10-ft square of difficult terrain. DEX save (DC 15) or fall prone, on casting and when entering or ending a turn there. House rule: fire ignites it (1d4 fire, burns 2 more rounds).",
+     "icon": "🛢️",
+     "kind": "action",
+     "lvl": 1
+    },
+    {
+     "name": "Invisibility",
+     "tag": "Action · touch · concentration, 1 hour",
+     "text": "One creature turns invisible until it attacks or casts a spell. +1 target per slot level above 2nd.",
+     "icon": "👻",
+     "kind": "action",
+     "lvl": 2
+    },
+    {
+     "name": "Cloud of Daggers",
+     "tag": "Action · 60 ft · concentration, 1 minute",
+     "text": "A 5-ft cube of spinning blades: 4d4 slashing to a creature that enters it or starts its turn there.",
+     "icon": "🗡️",
+     "kind": "action",
+     "lvl": 2
+    },
+    {
+     "name": "Fireball",
+     "tag": "Action · 150 ft",
+     "text": "20-ft-radius blast, DEX save (DC 15): 8d6 fire, half on a success. Lights flammable things and grease. Mind your friends.",
+     "icon": "☄️",
+     "kind": "action",
+     "lvl": 3
+    },
+    {
+     "name": "Misty Step",
+     "tag": "Bonus action · self",
+     "text": "Teleport up to 30 ft to a spot you can see. If you cast it, your only other spell that turn can be a 1-action cantrip.",
+     "icon": "🌫️",
+     "kind": "bonus",
+     "lvl": 2
+    },
+    {
+     "name": "Shield",
+     "tag": "Reaction",
+     "text": "When hit or targeted by Magic Missile: +5 AC until the start of your next turn, and Magic Missile does nothing to you. Abjuration: refills the Ward.",
+     "icon": "🔰",
+     "kind": "reaction",
+     "lvl": 1
+    },
+    {
+     "name": "Counterspell",
+     "tag": "Reaction · 60 ft",
+     "text": "Stop a spell being cast. A 3rd-level or lower spell fails automatically. A higher one needs an INT check (DC 10 + its level).",
+     "icon": "🚫",
+     "kind": "reaction",
+     "lvl": 3
+    },
+    {
+     "name": "Detect Magic",
+     "tag": "Ritual · 10 min · no slot",
+     "text": "Sense magic within 30 ft, see its aura and learn its school.",
+     "icon": "🔮",
+     "kind": "rest"
+    },
+    {
+     "name": "Find Familiar",
+     "tag": "Ritual · 1 hour · no slot",
+     "text": "Summon a spirit animal companion you can see and hear through.",
+     "icon": "🦉",
+     "kind": "rest"
+    },
+    {
+     "name": "Identify",
+     "tag": "Ritual · no slot",
+     "text": "Learn a magic item's properties and how to use it.",
+     "icon": "🔍",
+     "kind": "rest"
+    },
+    {
+     "name": "Arcane Recovery",
+     "text": "Once a day, during a short rest, regain spent slots totalling up to 3 levels (none 6th or higher).",
+     "icon": "🔄",
+     "kind": "rest",
+     "needs": "Arcane Recovery",
+     "tag": "Short rest"
+    },
+    {
+     "name": "Spend Hit Dice",
+     "text": "Spend during a short rest: roll 1d6 + 3 HP each.",
+     "icon": "🎲",
+     "kind": "rest",
+     "needs": "Hit Dice",
+     "tag": "Short rest"
+    }
+   ],
+   "passive": [
+    {
+     "name": "Arcane Ward",
+     "icon": "🪬",
+     "text": "A magic ward that takes damage before you do. Forms (14 HP) the first time you cast an abjuration spell of 1st level or higher after a long rest; later abjuration spells restore 2 × the spell's level.",
+     "left": 0
+    },
+    {
+     "name": "Ritual casting",
+     "icon": "🕯️",
+     "text": "Cast ritual spells from the spellbook without preparing them or spending a slot (+10 minutes)."
+    },
+    {
+     "name": "Abjuration Savant",
+     "icon": "📜",
+     "text": "Copying abjuration spells into the spellbook costs half the time and gold."
+    }
+   ],
+   "spellbook": [
+    {
+     "name": "Sleep",
+     "icon": "😴",
+     "lvl": 1,
+     "text": "5d8 HP of creatures in a 20-ft radius fall asleep, lowest HP first. No save."
+    },
+    {
+     "name": "Tasha's Hideous Laughter",
+     "icon": "😂",
+     "lvl": 1,
+     "text": "WIS save or fall prone laughing, incapacitated (concentration)."
+    },
+    {
+     "name": "Suggestion",
+     "icon": "🗣️",
+     "lvl": 2,
+     "text": "WIS save or follow a reasonable-sounding suggestion (concentration, 8 hours)."
+    }
+   ],
+   "equipped": [
+    {
+     "slot": "Main hand",
+     "name": "Winter's Kiss (+2 dagger)",
+     "text": "+7 to hit, 1d4+4 piercing + 1d4 cold. Finesse, thrown 20/60.",
+     "icon": "🗡️"
+    },
+    {
+     "slot": "Focus",
+     "name": "Crystal arcane focus",
+     "text": "Replaces material components without a cost.",
+     "icon": "💎"
+    },
+    {
+     "slot": "Body",
+     "name": "Indigo robes with silver trim",
+     "text": "No armor. AC 12, or 15 with Mage Armor.",
+     "icon": "🥋"
+    },
+    {
+     "slot": "Cloak",
+     "name": "Red riding cloak",
+     "text": "Worn over the robes as a disguise.",
+     "icon": "🧣"
+    }
+   ],
+   "inventory": [
+    {
+     "name": "Potion of healing",
+     "text": "2d4+2. Drinking it takes an action.",
+     "icon": "🧪"
+    },
+    {
+     "name": "Potion of fire resistance",
+     "text": "Resistance to fire damage for 1 hour.",
+     "icon": "🧯"
+    },
+    {
+     "name": "Spellbook",
+     "icon": "📖"
+    },
+    {
+     "name": "Pell's silver hand-mirror",
+     "text": "A scrying glass, knotted shut in black silk. While it's covered, whoever watches through it is blind.",
+     "icon": "🪞"
+    },
+    {
+     "name": "Tamsin's green glass bead",
+     "text": "On a silver chain, wrapped with the mirror. It renewed her charm and hums the water-song.",
+     "icon": "🟢"
+    },
+    {
+     "name": "Ness Garrow's hide map of the Sunk Mire",
+     "icon": "🗺️"
+    },
+    {
+     "name": "Ness's hunting horn",
+     "text": "On a green-and-gold cord.",
+     "icon": "📯"
+    },
+    {
+     "name": "Healer's kit (8/10)",
+     "icon": "🩹"
+    },
+    {
+     "name": "Corvin's snowflake signet ring and cracked sunburst mask",
+     "icon": "💍"
+    },
+    {
+     "name": "Ysolde's journal and her five scorched pages",
+     "icon": "📓"
+    },
+    {
+     "name": "Keys",
+     "text": "Snowflake key, Ivo's brass stair key, forge storeroom key, Hesk's ring of keys.",
+     "icon": "🗝️"
+    },
+    {
+     "name": "Papers and tokens",
+     "text": "The Tithe Book, Corvin's 9 letters, Ivo's ward-chamber map, Hesk's note, a blank red-wax token, Osric's token VII.",
+     "icon": "📜"
+    },
+    {
+     "name": "Small knife, bag of sand, ink and pen, 8 sheets of parchment",
+     "icon": "✒️"
+    },
+    {
+     "name": "Backpack, bedroll, waterskin, 2 torches, tinderbox, traveler's robes, spare red cloak (worn)",
+     "icon": "🎒"
+    },
+    {
+     "name": "Brass sunburst alarm whistle",
+     "icon": "🔔"
+    }
+   ]
+  },
+  "wren": {
+   "role": "Ranger 4 · Monster Slayer",
+   "stats": [
+    "STR 10 (+0)",
+    "DEX 18 (+4)",
+    "CON 12 (+1)",
+    "INT 10 (+0)",
+    "WIS 14 (+2)",
+    "CHA 10 (+0)"
+   ],
+   "spellcasting": "WIS · save DC 12 · spell attack +4",
+   "slots": [
+    {
+     "lvl": "1st",
+     "left": 3,
+     "max": 3
+    }
+   ],
+   "resources": [
+    {
+     "name": "Favored Foe",
+     "icon": "🩸",
+     "left": 2,
+     "max": 2,
+     "text": "When she hits, mark the target (concentration, 1 minute): her first hit on it each turn deals +1d4."
+    },
+    {
+     "name": "Hunter's Sense",
+     "icon": "👁️",
+     "left": 2,
+     "max": 2,
+     "text": "Action: learn a creature's damage immunities, resistances and vulnerabilities within 60 ft."
+    },
+    {
+     "name": "Speak with Animals (free cast)",
+     "icon": "🐾",
+     "left": 1,
+     "max": 1,
+     "text": "Primal Awareness. Used on the Old One, day 16 dawn; back after the next long rest."
+    },
+    {
+     "name": "Hit Dice",
+     "icon": "🎲",
+     "left": 4,
+     "max": 4,
+     "unit": "d10",
+     "text": "Spend during a short rest: roll 1d10 + 1 HP each."
+    }
+   ],
+   "use": [
+    {
+     "name": "Longbow",
+     "icon": "🏹",
+     "kind": "action",
+     "tag": "Attack · 150/600 ft",
+     "text": "+8 to hit, 1d8+4 piercing."
+    },
+    {
+     "name": "Shortsword",
+     "icon": "🗡️",
+     "kind": "action",
+     "tag": "Attack · melee",
+     "text": "+6 to hit, 1d6+4 piercing."
+    },
+    {
+     "name": "Hunter's Sense",
+     "text": "Action: learn a creature's damage immunities, resistances and vulnerabilities within 60 ft.",
+     "icon": "👁️",
+     "kind": "action",
+     "needs": "Hunter's Sense",
+     "tag": "Action · 60 ft",
+     "left": 1
+    },
+    {
+     "name": "Choir trick (Control Flames)",
+     "tag": "Action · 60 ft",
+     "text": "Brighten, dim, shape or smother a flame in a 5-ft cube, or spread it to nearby fuel.",
+     "icon": "🕯️",
+     "kind": "action",
+     "lvl": 0
+    },
+    {
+     "name": "Cure Wounds",
+     "tag": "Action · touch",
+     "text": "Heal 1d8+2.",
+     "icon": "💚",
+     "kind": "action",
+     "lvl": 1
+    },
+    {
+     "name": "Protection from Evil and Good",
+     "tag": "Action · touch · concentration, 10 min",
+     "text": "Monster Slayer spell. Aberrations, celestials, elementals, fey, fiends and undead have disadvantage to hit the target and can't charm, frighten or possess it.",
+     "icon": "✝️",
+     "kind": "action",
+     "lvl": 1
+    },
+    {
+     "name": "Speak with Animals",
+     "tag": "Action · 10 minutes · free cast or a slot",
+     "text": "Talk with beasts. One free cast per long rest (Primal Awareness), or use a slot.",
+     "icon": "🐾",
+     "kind": "action",
+     "lvl": 1
+    },
+    {
+     "name": "Slayer's Prey",
+     "text": "Bonus action: mark one creature within 60 ft. Her first weapon hit on it each turn deals +1d6. No concentration, unlimited.",
+     "icon": "🏹",
+     "kind": "bonus",
+     "tag": "Bonus action · 60 ft · unlimited"
+    },
+    {
+     "name": "Hunter's Mark",
+     "tag": "Bonus action · 90 ft · concentration, 1 hour",
+     "text": "+1d6 damage on each of her weapon hits against the marked target. She can move the mark when it drops.",
+     "icon": "🎯",
+     "kind": "bonus",
+     "lvl": 1
+    },
+    {
+     "name": "Absorb Elements",
+     "tag": "Reaction",
+     "text": "Resistance to the triggering acid, cold, fire, lightning or thunder damage until her next turn; her next melee hit adds +1d6 of that type.",
+     "icon": "🌀",
+     "kind": "reaction",
+     "lvl": 1
+    },
+    {
+     "name": "Favored Foe",
+     "text": "When she hits, mark the target (concentration, 1 minute): her first hit on it each turn deals +1d4.",
+     "icon": "🩸",
+     "kind": "free",
+     "needs": "Favored Foe",
+     "tag": "When she hits · concentration"
+    },
+    {
+     "name": "Spend Hit Dice",
+     "text": "Spend during a short rest: roll 1d10 + 1 HP each.",
+     "icon": "🎲",
+     "kind": "rest",
+     "needs": "Hit Dice",
+     "tag": "Short rest"
+    }
+   ],
+   "passive": [
+    {
+     "name": "Archery",
+     "icon": "🎯",
+     "text": "+2 to hit with ranged weapons (already counted)."
+    },
+    {
+     "name": "Deft Explorer",
+     "icon": "🧭",
+     "text": "Expertise in Stealth (+8). Speaks Primordial and Draconic."
+    },
+    {
+     "name": "Primal Awareness",
+     "icon": "🐾",
+     "text": "Speak with Animals is always known, with one free cast per long rest."
+    }
+   ],
+   "spellbook": [],
+   "equipped": [
+    {
+     "slot": "Main hand",
+     "name": "Longbow",
+     "text": "+8 to hit, 1d8+4 piercing, range 150/600.",
+     "icon": "🏹"
+    },
+    {
+     "slot": "Ammo",
+     "name": "Quiver of about 63 arrows",
+     "text": "Red-and-cream fletching.",
+     "icon": "🪶"
+    },
+    {
+     "slot": "Belt",
+     "name": "Ness's shortsword",
+     "text": "+6 to hit, 1d6+4 piercing, finesse.",
+     "icon": "🗡️"
+    },
+    {
+     "slot": "Body",
+     "name": "Leather armor",
+     "text": "AC 15.",
+     "icon": "🦺"
+    },
+    {
+     "slot": "Cloak",
+     "name": "Green hooded cloak",
+     "icon": "🧥"
+    },
+    {
+     "slot": "Neck",
+     "name": "Gold necklace",
+     "icon": "📿"
+    }
+   ],
+   "inventory": [
+    {
+     "name": "Potion of healing",
+     "text": "2d4+2. Drinking it takes an action.",
+     "icon": "🧪"
+    },
+    {
+     "name": "27 gp 5 sp",
+     "icon": "💰"
+    },
+    {
+     "name": "Clean red riding cloak",
+     "icon": "🧣"
+    },
+    {
+     "name": "Thal's spare blanket, bedroll, waterskin",
+     "icon": "🛏️"
+    },
+    {
+     "name": "Lent out",
+     "text": "Her knife is with Tamsin.",
+     "icon": "🤝"
+    }
+   ]
+  },
+  "holt": {
+   "role": "Fighter 5 · Champion",
+   "stats": [
+    "STR 18 (+4)",
+    "DEX 12 (+1)",
+    "CON 14 (+2)",
+    "INT 10 (+0)",
+    "WIS 12 (+1)",
+    "CHA 10 (+0)"
+   ],
+   "resources": [
+    {
+     "name": "Second Wind",
+     "icon": "💨",
+     "left": 1,
+     "max": 1,
+     "text": "Bonus action: heal 1d10+5. Back after a short rest."
+    },
+    {
+     "name": "Action Surge",
+     "icon": "⚡",
+     "left": 1,
+     "max": 1,
+     "text": "One extra action on his turn. Back after a short rest."
+    },
+    {
+     "name": "Hit Dice",
+     "icon": "🎲",
+     "left": 5,
+     "max": 5,
+     "unit": "d10",
+     "text": "Spend during a short rest: roll 1d10 + 2 HP each."
+    }
+   ],
+   "use": [
+    {
+     "name": "Attack ×2 with the warhammer",
+     "icon": "🔨",
+     "kind": "action",
+     "tag": "Attack · Extra Attack",
+     "text": "Two attacks: +7 to hit, 1d8+4 bludgeoning each. Crits on 19–20."
+    },
+    {
+     "name": "Attack ×2 with the light crossbow",
+     "icon": "🏹",
+     "kind": "action",
+     "tag": "Attack · 80/320 ft",
+     "text": "+4 to hit, 1d8+1 piercing. Loading: one bolt per action, even with Extra Attack."
+    },
+    {
+     "name": "Second Wind",
+     "text": "Bonus action: heal 1d10+5. Back after a short rest.",
+     "icon": "💨",
+     "kind": "bonus",
+     "needs": "Second Wind",
+     "tag": "Bonus action · self",
+     "left": 0
+    },
+    {
+     "name": "Action Surge",
+     "text": "One extra action on his turn. Back after a short rest.",
+     "icon": "⚡",
+     "kind": "free",
+     "needs": "Action Surge",
+     "tag": "On his turn · no action needed"
+    },
+    {
+     "name": "Spend Hit Dice",
+     "text": "Spend during a short rest: roll 1d10 + 2 HP each.",
+     "icon": "🎲",
+     "kind": "rest",
+     "needs": "Hit Dice",
+     "tag": "Short rest"
+    }
+   ],
+   "passive": [
+    {
+     "name": "Extra Attack",
+     "icon": "⚔️",
+     "text": "Two attacks whenever he takes the Attack action."
+    },
+    {
+     "name": "Improved Critical",
+     "icon": "💢",
+     "text": "His weapon attacks crit on a 19 or 20."
+    },
+    {
+     "name": "Blind Fighting",
+     "icon": "🦇",
+     "text": "Sees invisible creatures and sees in darkness within 10 ft."
+    }
+   ],
+   "spellbook": [],
+   "equipped": [
+    {
+     "slot": "Main hand",
+     "name": "Warhammer",
+     "text": "+7 to hit, 1d8+4 bludgeoning (twice with Extra Attack). Master Garran's make, Ysolde's snowflake forge mark.",
+     "icon": "🔨"
+    },
+    {
+     "slot": "Off hand",
+     "name": "Round iron-rimmed shield",
+     "text": "+2 AC. Sooted black and scratched with a pike (the signal for Bors).",
+     "icon": "🛡️"
+    },
+    {
+     "slot": "Body",
+     "name": "Chain mail",
+     "text": "AC 18 with the shield, 16 without. Disadvantage on Stealth.",
+     "icon": "⛓️"
+    },
+    {
+     "slot": "Slung",
+     "name": "Light crossbow with about 19 bolts",
+     "text": "+4 to hit, 1d8+1 piercing, range 80/320. Loading.",
+     "icon": "🏹"
+    }
+   ],
+   "inventory": [
+    {
+     "name": "Potion of healing",
+     "text": "2d4+2. Drinking it takes an action.",
+     "icon": "🧪"
+    },
+    {
+     "name": "35 gp",
+     "icon": "💰"
+    },
+    {
+     "name": "50 ft of hempen rope",
+     "icon": "🪢"
+    },
+    {
+     "name": "Backpack, bedroll, tinderbox, waterskin, whetstone",
+     "icon": "🎒"
+    },
+    {
+     "name": "Battleaxe (on his saddle)",
+     "text": "+7 to hit, 1d10+4 slashing, two-handed. With the horses at the heron-tree copse.",
+     "icon": "🪓"
+    }
+   ]
+  }
+ }
+}

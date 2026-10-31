@@ -1,0 +1,543 @@
+<title>__TITLE__</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Nunito:wght@400;600;800&display=swap">
+<style>
+/* Portrait-first battle map in the flat vector look of the scene art: a turn-order strip of big portraits on top,
+   the 5 ft grid below with face tokens, and a spotlight card for whoever is acting (or tapped). */
+:root{
+  --ground:#F3E4D6; --panel:#F8EEE4; --line:#E2CDBA; --ink:#2B1B17; --mute:#7A6458;
+  --party:#2E3A66; --ally:#3E6B6A; --foe:#B4463E; --neutral:#C99A4A; --gold:#E8C15A; --hpbar:#5C7F4F; --hplow:#DD8E73; --track:#E9D8C8;
+  --mapbg:#2F5352;
+  --display:"Bree Serif",Georgia,serif; --body:"Nunito","Segoe UI",system-ui,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#241915; --panel:#30231D; --line:#4A3830; --ink:#F3E4D6; --mute:#C2AA9A; --track:#4A3830; --ally:#6F9590; --party:#4A5AA0; color-scheme:dark;}}
+:root[data-theme="dark"]{--ground:#241915; --panel:#30231D; --line:#4A3830; --ink:#F3E4D6; --mute:#C2AA9A; --track:#4A3830; --ally:#6F9590; --party:#4A5AA0; color-scheme:dark;}
+body{background:var(--ground);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.45;margin:0}
+.wrap{max-width:1360px;margin:0 auto;padding-block:18px 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:14px}
+html,body{overflow-x:hidden}
+.wrap>*{min-width:0}
+header{display:flex;flex-wrap:wrap;gap:4px 16px;align-items:baseline}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.05;margin:0}
+.round{font-family:var(--display);background:var(--ink);color:var(--ground);border-radius:999px;padding:2px 12px;font-size:.95rem}
+.status{color:var(--mute);flex-basis:100%}
+.status b{color:var(--ink)}
+
+/* turn order strip */
+.striplabel{margin-bottom:-14px}
+.strip{display:flex;gap:12px;overflow-x:auto;padding:14px 4px 8px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+/* Characters page (view: characters): the cast as a wrapping grid, no map */
+.strip.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));overflow:visible;gap:14px 12px}
+.strip.grid .tc{width:auto}
+.tc{flex:none;width:168px;align-content:start;scroll-snap-align:start;background:var(--panel);border:2px solid var(--line);border-radius:18px;padding:12px 10px 10px;display:grid;justify-items:center;gap:6px;cursor:pointer;position:relative;text-align:center;transition:transform .2s}
+.tc:hover,.tc:focus-visible{transform:translateY(-3px);outline:none}
+.tc .pic{width:96px;height:96px;border-radius:50%;overflow:hidden;border:4px solid var(--side);display:grid;place-items:center;background:var(--line);font:800 1.5rem var(--body);color:var(--ink)}
+.tc .pic img{width:100%;height:100%;object-fit:cover;display:block}
+.tc .nm{font-weight:800;font-size:.95rem;line-height:1.15}
+.tc .rl{font-size:.74rem;color:var(--mute);line-height:1.2;margin-top:-4px}
+.tc .tn{font-size:.76rem;line-height:1.3;color:var(--ink);opacity:.8;text-align:left;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.chip.fx{background:color-mix(in srgb,var(--ally) 16%,var(--ground));border-color:var(--ally);color:var(--ink);font-weight:700}
+.tc .meta{font-size:.75rem;color:var(--mute);font-variant-numeric:tabular-nums;margin-top:-2px}
+.shnote{margin:0;padding:10px 16px 0;color:var(--mute);font-size:.92rem}
+.tc .ord{position:absolute;top:-10px;left:-8px;width:28px;height:28px;border-radius:50%;background:var(--ink);color:var(--ground);display:grid;place-items:center;font:800 .85rem var(--body)}
+.tc.now{width:196px;box-shadow:0 0 0 4px color-mix(in srgb,var(--gold) 40%,transparent)}
+.tc.now .pic{width:124px;height:124px}
+.tc.now::after{content:"Now acting";position:absolute;top:-12px;right:-6px;background:var(--gold);color:#2B1B17;font:800 .7rem var(--body);letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:3px 9px}
+.tc.sel:not(.now){border-color:var(--side)}
+.tc.done{opacity:.75}
+.tc.down .pic img{filter:grayscale(1);opacity:.6}
+.bar{width:100%;height:8px;border-radius:999px;background:var(--track);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--hpbar);border-radius:999px}
+.bar i.low{background:var(--hplow)}
+.hpn{font-size:.8rem;font-variant-numeric:tabular-nums;color:var(--mute);margin-top:-4px}
+.tc .pw{position:relative;display:grid;justify-items:center}
+.tc .cb{position:absolute;bottom:-6px;background:var(--panel);border:2px solid var(--line);border-radius:999px;padding:1px 7px;font:800 .72rem var(--body);font-variant-numeric:tabular-nums;color:var(--ink);white-space:nowrap;line-height:1.35}
+.tc{border-color:var(--side)!important;background:color-mix(in srgb,var(--side) 9%,var(--panel));padding-top:0;overflow:visible}
+.tc .band{justify-self:stretch;margin:0 -10px 6px;padding:5px 8px;border-radius:15px 15px 0 0;background:var(--side);color:#fff;font:800 .72rem var(--body);letter-spacing:.08em;text-transform:uppercase}
+.tc.now .band{border-radius:13px 13px 0 0}
+.tc.k-neutral .band{color:#2B1B17}
+.tc .cb.loc{left:-14px}.tc .cb.ac{right:-14px}
+.tc .cnt{position:absolute;top:-4px;right:-12px;background:var(--ink);color:var(--ground);font:800 .8rem var(--body);border-radius:999px;padding:2px 8px}
+.hp{position:relative;width:100%;height:20px;border-radius:999px;background:var(--track);overflow:hidden;margin-top:2px}
+.hp i{position:absolute;inset:0 auto 0 0;border-radius:999px;background:var(--hpbar)}
+.hp.mid i{background:#C99A4A}.hp.low i{background:var(--foe)}
+.hp b{position:relative;display:block;text-align:center;font:800 .74rem/20px var(--body);font-variant-numeric:tabular-nums;color:#fff;text-shadow:0 0 3px rgba(0,0,0,.75),0 0 1px rgba(0,0,0,.9)}
+.word{font-size:.78rem;font-weight:800;border-radius:999px;padding:2px 10px;background:var(--foe);color:#fff}
+.word.w0{background:#7E9A62}.word.w1{background:#C99A4A}.word.w2{background:#DD8E73}.word.w3{background:#B4463E}.word.w4{background:#6E655D}
+.chips{display:flex;flex-wrap:wrap;gap:4px;justify-content:center}
+.chip{font-size:.7rem;border:1px solid var(--line);border-radius:999px;padding:1px 7px;color:var(--mute);background:var(--ground)}
+.chip.cond,.pill.cond{background:#B4463E;border-color:#B4463E;color:#fff;font-weight:800}
+.pill.fx{background:color-mix(in srgb,var(--ally) 16%,var(--ground));border-color:var(--ally);color:var(--ink)}
+
+.main{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:16px;align-items:start}
+@media (max-width:920px){.main{grid-template-columns:minmax(0,1fr)}}
+.mapcol{display:grid;gap:8px;min-width:0}
+.sqbar{margin:0;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center;color:var(--mute);font-size:.92rem}
+.sqname{font:800 1rem var(--body);background:var(--ink);color:var(--gold);border-radius:999px;padding:2px 12px}
+.mapbox{overflow-x:auto;background:var(--mapbg);border-radius:18px;padding:10px;-webkit-overflow-scrolling:touch}
+svg#map{cursor:crosshair;display:block;width:100%;min-width:780px;height:auto;touch-action:manipulation;user-select:none;border-radius:8px}
+aside{display:grid;gap:14px;min-width:0}
+.card{background:var(--panel);border:2px solid var(--line);border-radius:18px;padding:16px;display:grid;gap:10px;min-width:0}
+.label{font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.spot{justify-items:center;text-align:center}
+.spot .big{width:min(240px,70vw);aspect-ratio:1;border-radius:50%;overflow:hidden;border:6px solid var(--side);display:grid;place-items:center;background:var(--line);font:800 3rem var(--body)}
+.spot .big img{width:100%;height:100%;object-fit:cover;display:block}
+.spot.now .big{border-color:var(--gold);box-shadow:0 0 0 6px color-mix(in srgb,var(--gold) 35%,transparent)}
+.spot h2{font-family:var(--display);font-weight:400;font-size:1.6rem;margin:0;line-height:1.1}
+.spot .role{color:var(--mute);margin-top:-6px}
+.stats{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.pill{font-size:.84rem;font-weight:600;border:1px solid var(--line);border-radius:999px;padding:2px 10px;font-variant-numeric:tabular-nums;background:var(--ground)}
+.note{color:var(--mute);font-size:.92rem;margin:0;text-align:left}
+.back{font:800 .85rem var(--body);color:var(--ally);background:none;border:0;cursor:pointer;text-decoration:underline;padding:0}
+.legend{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px 10px}
+.legend div{display:flex;gap:8px;align-items:center;font-size:.86rem;min-width:0}
+.sw{width:30px;height:30px;box-sizing:border-box;border-radius:4px;flex:none}
+.tile{width:30px;height:30px;flex:none;display:block;border-radius:3px;box-shadow:0 0 0 1px rgba(43,27,23,.25)}
+.hint{margin:0;color:var(--mute);font-size:.88rem}
+/* character sheet panel: tap a party member to open it */
+.sheetbtn{font:800 .9rem var(--body);background:var(--ally);color:#fff;border:0;border-radius:999px;padding:8px 18px;cursor:pointer}
+dialog#sheet{border:0;padding:0;background:var(--panel);color:var(--ink);border-radius:22px;width:min(560px,calc(100vw - 24px));max-height:min(88vh,860px);box-shadow:0 18px 60px rgba(0,0,0,.45)}
+dialog#sheet::backdrop{background:rgba(30,20,16,.55)}
+@media (max-width:620px){dialog#sheet{width:100vw;max-width:100vw;max-height:88vh;margin:auto 0 0;border-radius:22px 22px 0 0}}
+.sh{display:flex;flex-direction:column;max-height:inherit;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.shhead{display:flex;gap:14px;align-items:center;padding:16px 16px 10px;border-bottom:2px solid var(--line)}
+.shhead .pic{width:72px;height:72px;flex:none;border-radius:50%;overflow:hidden;border:4px solid var(--ally);background:var(--line)}
+.shhead .pic{display:grid;place-items:center;font-size:2.2rem}
+.shhead .pic img{width:100%;height:100%;object-fit:cover;display:block}
+.shhead h2{font-family:var(--display);font-weight:400;font-size:1.5rem;line-height:1.05;margin:0}
+.shhead .sub{color:var(--mute);font-size:.88rem}
+.shhead .x{margin-left:auto;align-self:flex-start;width:40px;height:40px;flex:none;border-radius:50%;border:2px solid var(--line);background:var(--ground);color:var(--ink);font:800 1.1rem var(--body);cursor:pointer}
+.shstats{display:flex;flex-wrap:wrap;gap:5px;padding:10px 16px 0}
+.shstats .pill{font-size:.78rem}
+.tabs{display:flex;gap:6px;padding:12px 16px 8px;position:sticky;top:0;z-index:2;background:var(--panel)}
+.tabs button{flex:1;min-width:0;font:800 .8rem var(--body);border:2px solid var(--line);background:var(--ground);color:var(--mute);border-radius:999px;padding:8px 6px;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:var(--ground)}
+.shbody{padding:6px 16px 22px;display:grid;gap:12px}
+.shbody h3{font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin:6px 0 0}
+.slots{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;font-size:.88rem;font-weight:700}
+.pips{display:inline-flex;gap:4px;margin-left:6px;vertical-align:middle}
+.pips i{width:12px;height:12px;border-radius:50%;border:2px solid var(--ally);display:block}
+.pips i.on{background:var(--ally)}
+.cast{color:var(--mute);font-size:.86rem;margin:0}
+.it{background:var(--ground);border:1px solid var(--line);border-radius:12px}
+.it summary,.it .row{list-style:none;cursor:pointer;padding:9px 12px;display:flex;flex-wrap:wrap;gap:2px 10px;align-items:baseline}
+.it .row{cursor:default}
+.it summary::-webkit-details-marker{display:none}
+.it summary::after{content:"+";margin-left:auto;color:var(--mute);font-weight:800}
+.it[open] summary::after{content:"–"}
+.it .n{font-weight:800}
+.it .tg{font-size:.78rem;color:var(--mute)}
+.it .slot{font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ally);flex-basis:100%}
+.it .use{font-size:.78rem;font-weight:800;color:var(--ally);font-variant-numeric:tabular-nums}
+.it .use.out{color:var(--foe)}
+.it p{margin:0;padding:0 12px 10px;color:var(--mute);font-size:.9rem}
+.now-fx{display:grid;gap:6px}
+.now-fx .it{border-left:5px solid var(--ally)}
+.now-fx .it.c{border-left-color:#B4463E}
+.packbtn{font:800 .85rem var(--body);background:var(--panel);color:var(--ink);border:2px solid var(--line);border-radius:999px;padding:3px 12px;cursor:pointer;align-self:center}
+.packlink{font:800 .9rem var(--body);background:var(--ground);color:var(--ally);border:2px dashed var(--line);border-radius:12px;padding:10px;cursor:pointer;text-align:left}
+.left{display:grid;gap:8px;background:var(--ground);border:1px solid var(--line);border-radius:14px;padding:10px 12px}
+.rescount{display:flex;flex-wrap:wrap;gap:6px}
+.rc{font-size:.8rem;font-weight:800;border-radius:999px;padding:2px 10px;background:color-mix(in srgb,var(--ally) 16%,var(--panel));color:var(--ink);font-variant-numeric:tabular-nums}
+.rc.out{background:var(--track);color:var(--mute);text-decoration:line-through}
+.it .lv{font-size:.68rem;font-weight:800;letter-spacing:.04em;border-radius:999px;padding:1px 7px;background:var(--ink);color:var(--ground)}
+.it .why{font-size:.72rem;font-weight:800;border-radius:999px;padding:1px 8px;background:var(--track);color:var(--mute)}
+.it.off{opacity:.55;border-style:dashed}
+.it.off .n{text-decoration:line-through;text-decoration-thickness:1px}
+.book{border:2px dashed var(--line);border-radius:14px;padding:4px 10px 10px;display:grid;gap:8px}
+.book>summary{cursor:pointer;font-weight:800;padding:8px 2px;color:var(--mute);list-style:none}
+.book>summary::-webkit-details-marker{display:none}
+.book .it.off .n{text-decoration:none}
+.hero{margin:0;border-radius:18px;overflow:hidden;background:var(--line)}
+.hero img{display:block;width:100%;height:auto}
+.jcard{gap:8px}
+.jcard h2{font-family:var(--display);font-weight:400;font-size:1.3rem;margin:0}
+.jline{display:flex;gap:8px;align-items:baseline;font-size:.92rem}
+.jline b{white-space:nowrap}
+.jcard>*{min-width:0}
+.jline span{color:var(--mute);min-width:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.it .next{display:block;margin:0 12px 10px;padding:6px 10px;border-radius:10px;background:color-mix(in srgb,var(--gold) 22%,var(--panel));font-size:.88rem;color:var(--ink)}
+.it .where{display:block;margin:-4px 12px 10px;font-size:.8rem;color:var(--mute)}
+.faces{display:flex;gap:4px;margin:0 12px 10px}
+.faces img{width:34px;height:34px;border-radius:50%;border:2px solid var(--ally);object-fit:cover}
+.asof{color:var(--mute);font-size:.78rem;margin:4px 0 0}
+@keyframes halo{0%,100%{opacity:.9}50%{opacity:.35}}
+.halo{animation:halo 1.8s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+  <figure class="hero" id="hero" hidden><img id="heroimg" alt=""></figure>
+  <header>
+    <h1 id="title"></h1><span class="round" id="round"></span>
+    <span class="status" id="status"></span>
+  </header>
+  <div class="striplabel label" id="striplabel"></div><div class="strip" id="strip" aria-label="Turn order"></div>
+  <div class="main">
+    <div class="mapcol"><div class="mapbox"><svg id="map" xmlns="http://www.w3.org/2000/svg"></svg></div>
+      <p class="sqbar"><span class="sqname" id="sqname">Tap a square</span><span id="sqinfo">to see its name, like C10, then use it in your orders, like "I move to C10".</span></p></div>
+    <aside>
+      <div class="card jcard" id="jcard" hidden></div>
+      <div class="card"><span class="label">Terrain · each square is 5 ft</span><div class="legend" id="legend"></div></div>
+    </aside>
+  </div>
+</div>
+<dialog id="sheet" aria-label="Character sheet"><div class="sh" id="sh"></div></dialog>
+
+<script>
+/* ---------- table state: the DM edits this block each round ---------- */
+const STATE = __STATE__;
+const FACE = __FACE__;   // tight face crops for map tokens
+const PORT = __PORT__;   // full portrait circles for the strip and spotlight
+const JOURNAL = __JOURNAL__; // quest journal from journal.json (what the hero knows)
+const SCENE = __SCENE__;     // scene image shown above the title
+const PARTY = __PARTY__; // character panels from party.json (spells, abilities, gear, inventory)
+/* --------------------------------------------------------------------- */
+const T = STATE.terrain, M = STATE.map, R = M.length, Cn = M[0].length, Z = 44;
+const svg = document.getElementById('map'), NS = 'http://www.w3.org/2000/svg';
+const MG = Z*.6;   // ruler margin: column letters on top, row numbers on the left
+svg.setAttribute('viewBox', `${-MG} ${-MG} ${Cn*Z+MG} ${R*Z+MG}`);
+const el = (n, a, p=svg) => { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); p.appendChild(e); return e; };
+const tokens = STATE.tokens, byId = Object.fromEntries(tokens.map(t => [t.id, t]));
+// Scene map: "mode": "combat" (turn order, round, whose turn) or "explore" (no turn order: the strip becomes a plain party row)
+// Characters page (Thanawat, Oct 28): same build with "view": "characters" shows only the scene image, title and the cast cards (no grid map)
+const CHARS = STATE.view === 'characters';
+const EXPLORE = STATE.mode === 'explore' || CHARS;
+const RANK = t => t.focus ? 0 : sheetOf0(t) ? 4 : t.side === 'ally' ? 1 : t.side === 'foe' ? 3 : 2;   // explore row: allies, neutrals, foes, then the party last; "focus": true puts the NPC the party is dealing with first (Thanawat, Oct 26)
+const order = EXPLORE ? tokens.filter(t => !t.hidden_in_row).sort((a, b) => RANK(a) - RANK(b)).map(t => t.id)
+                      : (STATE.order || []).filter(id => byId[id]);
+function sheetOf0(t) { return typeof PARTY !== 'undefined' && PARTY.chars && PARTY.chars[t.sheet || t.id]; }
+if (EXPLORE) STATE.active = '';
+let selected = STATE.active || order[0] || tokens[0].id;
+const kind = t => sheetOf(t) ? 'party' : t.side === 'ally' ? 'ally' : t.side === 'foe' ? 'foe' : 'neutral';   // party = PCs with a sheet in party.json
+const KIND = {party:['⭐ Party', '#2E3A66'], ally:['🤝 Ally', '#3E6B6A'], foe:['⚔️ Enemy', '#B4463E'], neutral:['⚖️ Neutral', '#C99A4A']};
+const sideCol = t => 'var(--' + kind(t) + ')';
+const colName = x => (x >= 26 ? String.fromCharCode(64 + Math.floor(x/26)) : '') + String.fromCharCode(65 + x%26);
+const sq = (x, y) => colName(x) + (y + 1);   // e.g. C10: column letter, then row number
+const WORDS = ['Unhurt', 'Scratched', 'Bloodied', 'Badly hurt', 'Down'];
+
+// terrain: one tile painter, used for the map and for the legend swatches
+function tile(c, x, y, z, p) {
+  const t = T[c] || {fill:'#22403F'}, X = x*z, Y = y*z;
+  el('rect', {x:X, y:Y, width:z, height:z, fill:t.fill}, p);
+  if (t.dot) el('circle', {cx:X+z/2, cy:Y+z/2, r:z*.28, fill:t.dot}, p);
+  if (t.mark === 'reeds') for (const dx of [.25, .5, .75]) el('path', {d:`M${X+dx*z},${Y+z*.85} q${(dx-.5)*z*.23},-${z*.35} ${(dx-.5)*z*.36},-${z*.6}`, stroke:t.ink, 'stroke-width':z*.057, fill:'none', 'stroke-linecap':'round'}, p);
+  if (t.mark === 'planks') el('path', {d:`M${X},${Y+z/2} H${X+z}`, stroke:t.ink, 'stroke-width':z*.034, opacity:.6}, p);
+  if (t.mark === 'roof') el('path', {d:`M${X+z*.14},${Y+z*.86} L${X+z*.86},${Y+z*.14}`, stroke:t.ink, 'stroke-width':z*.045, opacity:.5}, p);
+  if (t.mark === 'stake') el('circle', {cx:X+z/2, cy:Y+z/2, r:z*.18, fill:t.ink}, p);
+  if (t.mark === 'ladder') el('path', {d:`M${X+z*.3},${Y+z*.09} V${Y+z*.91} M${X+z*.7},${Y+z*.09} V${Y+z*.91} M${X+z*.3},${Y+z*.33} H${X+z*.7} M${X+z*.3},${Y+z*.66} H${X+z*.7}`, stroke:t.ink, 'stroke-width':z*.057}, p);
+  if (t.mark === 'flame') el('path', {d:`M${X+z/2},${Y+z*.18} C${X+z*.85},${Y+z*.5} ${X+z*.75},${Y+z*.82} ${X+z/2},${Y+z*.82} C${X+z*.25},${Y+z*.82} ${X+z*.15},${Y+z*.5} ${X+z/2},${Y+z*.18} Z`, fill:t.ink}, p);
+}
+const gT = el('g', {});
+for (let y = 0; y < R; y++) for (let x = 0; x < Cn; x++) tile(M[y][x], x, y, Z, gT);
+const gG = el('g', {stroke:'#2B1B17', 'stroke-opacity':.22, 'stroke-width':1});
+for (let x = 0; x <= Cn; x++) el('line', {x1:x*Z, y1:0, x2:x*Z, y2:R*Z}, gG);
+for (let y = 0; y <= R; y++) el('line', {x1:0, y1:y*Z, x2:Cn*Z, y2:y*Z}, gG);
+// coordinate ruler
+const gR = el('g', {'font-family':'Nunito, sans-serif', 'font-weight':800, 'font-size':Z*.32, fill:'#F3E4D6', 'text-anchor':'middle'});
+for (let x = 0; x < Cn; x++) el('text', {x:x*Z+Z/2, y:-MG*.32}, gR).textContent = colName(x);
+for (let y = 0; y < R; y++) el('text', {x:-MG/2, y:y*Z+Z/2+Z*.11}, gR).textContent = y + 1;
+for (const l of STATE.labels || []) {
+  const t = el('text', {x:l.x*Z, y:l.y*Z, fill:l.color||'#F3E4D6', 'font-size':l.size||14, 'font-family':'Nunito, sans-serif', 'font-weight':800, 'letter-spacing':1.5, 'text-anchor':l.anchor||'start', 'paint-order':'stroke', stroke:'#2B1B17', 'stroke-width':3, 'stroke-opacity':.5});
+  t.textContent = l.text;
+}
+const gTok = el('g', {}), gPick = el('g', {'pointer-events':'none'});
+// tap a square to see its name (e.g. C10) so moves can be called out exactly
+let picked = null;
+function pickSquare(x, y) {
+  picked = [x, y]; gPick.replaceChildren();
+  const X = x*Z, Y = y*Z, name = sq(x, y), w = Z*1.3, ty = y === 0 ? Y+Z+4 : Y-Z*.62-4;
+  el('rect', {x:X+1.5, y:Y+1.5, width:Z-3, height:Z-3, fill:'#E8C15A', 'fill-opacity':.25, stroke:'#E8C15A', 'stroke-width':3, rx:4}, gPick);
+  el('rect', {x:X+Z/2-w/2, y:ty, width:w, height:Z*.62, rx:Z*.31, fill:'#2B1B17'}, gPick);
+  el('text', {x:X+Z/2, y:ty+Z*.43, 'text-anchor':'middle', fill:'#E8C15A', 'font-size':Z*.36, 'font-weight':800, 'font-family':'Nunito, sans-serif'}, gPick).textContent = name;
+  const here = tokens.filter(t => x >= t.x && x < t.x + (t.size||1) && y >= t.y && y < t.y + (t.size||1)).map(t => t.name);
+  document.getElementById('sqname').textContent = name;
+  document.getElementById('sqinfo').textContent = [(T[M[y][x]] || {}).name, ...here].filter(Boolean).join(' · ');
+}
+svg.addEventListener('click', e => {
+  const p = new DOMPoint(e.clientX, e.clientY).matrixTransform(svg.getScreenCTM().inverse());
+  const x = Math.floor(p.x/Z), y = Math.floor(p.y/Z);
+  if (x >= 0 && y >= 0 && x < Cn && y < R) pickSquare(x, y);
+});
+
+function token(t) {
+  const sz = t.size || 1, sc = t.small ? .72 : 1;
+  const cx = t.x*Z + Z*sz/2, cy = t.y*Z + Z*sz/2, r = Z*.47*sz*sc;
+  const g = el('g', {style:'cursor:pointer', tabindex:0, role:'button', 'aria-label':t.name}, gTok);
+  if (t.id === STATE.active) el('circle', {class:'halo', cx, cy, r:r+7, fill:'none', stroke:'#E8C15A', 'stroke-width':5}, g);
+  el('circle', {cx, cy:cy+3, r, fill:'#000', opacity:.25}, g);   // flat drop shadow
+  const id = 'c' + t.id, cp = el('clipPath', {id}, g); el('circle', {cx, cy, r}, cp);
+  if (FACE[t.img]) el('image', {href:FACE[t.img], x:cx-r, y:cy-r, width:2*r, height:2*r, 'clip-path':`url(#${id})`, preserveAspectRatio:'xMidYMid slice', opacity:t.invisible ? .45 : 1, style:t.down ? 'filter:grayscale(1)' : ''}, g);
+  else { el('circle', {cx, cy, r, fill:'#F8EEE4'}, g); el('text', {x:cx, y:cy+5, 'text-anchor':'middle', fill:'#2B1B17', 'font-size':14*sc, 'font-weight':800, 'font-family':'Nunito, sans-serif'}, g).textContent = t.short; }
+  el('circle', {cx, cy, r, fill:'none', stroke:KIND[kind(t)][1], 'stroke-width':t.id === selected ? 5 : 3.5, 'stroke-dasharray':t.invisible ? '5 4' : 'none'}, g);
+  if (t.count > 1) {   // a group (mob) token: ×N badge on the upper right
+    const bx = cx + r*.62, by = cy - r*.78, w = 12 + 7*String(t.count).length;
+    el('rect', {x:bx-w/2, y:by-9, width:w, height:18, rx:9, fill:'#2B1B17'}, g);
+    el('text', {x:bx, y:by+4.5, 'text-anchor':'middle', fill:'#fff', 'font-size':12, 'font-weight':800, 'font-family':'Nunito, sans-serif'}, g).textContent = '×' + t.count;
+  }
+  if (t.down) el('path', {d:`M${cx-r*.6},${cy-r*.6} L${cx+r*.6},${cy+r*.6} M${cx+r*.6},${cy-r*.6} L${cx-r*.6},${cy+r*.6}`, stroke:'#B4463E', 'stroke-width':4, 'stroke-linecap':'round'}, g);
+  g.addEventListener('click', e => { e.stopPropagation(); select(t.id); pickSquare(t.x, t.y); openSheet(t.id); });
+  g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(t.id); openSheet(t.id); } });
+}
+function pic(t, cls) {
+  const d = document.createElement('div'); d.className = cls; d.style.setProperty('--side', sideCol(t));
+  if (PORT[t.img]) { const i = document.createElement('img'); i.src = PORT[t.img]; i.alt = ''; d.appendChild(i); } else d.textContent = t.short;
+  return d;
+}
+const WORDF = {'Unhurt': 1, 'Scratched': .8, 'Bloodied': .45, 'Badly hurt': .2, 'Down': 0};
+function hpBar(t, box) {  // strip cards: a bar that shifts green, amber, red as they get hurt.
+  // Party: exact numbers inside. Everyone else: only a hint (the health word), from `health`, or from `hp` with the numbers hidden; no data = Unhurt.
+  let f, txt;
+  if (sheetOf(t) && t.hp) { const [c, m] = String(t.hp).split('/').map(Number); f = c/m; txt = `❤️ ${c}/${m}`; }
+  else {
+    let w = t.down ? 'Down' : t.health;
+    if (!w && t.hp) { const [c, m] = String(t.hp).split('/').map(Number), r = c/m; w = r >= 1 ? 'Unhurt' : r > .5 ? 'Scratched' : r > .25 ? 'Bloodied' : r > 0 ? 'Badly hurt' : 'Down'; }
+    w = w in WORDF ? w : 'Unhurt'; f = WORDF[w]; txt = (w === 'Down' ? '🖤 ' : '❤️ ') + w;
+  }
+  f = Math.max(0, Math.min(1, f));
+  const b = mk('div', 'hp' + (f <= .25 ? ' low' : f <= .5 ? ' mid' : ''), null, box); b.title = txt.slice(2);
+  mk('i', null, null, b).style.width = f*100 + '%'; mk('b', null, txt, b);
+}
+function health(t, box) {  // allies: exact HP and a bar; foes and others: a word only
+  if (t.side === 'ally' && t.hp) {
+    const [c, m] = String(t.hp).split('/').map(Number);
+    const b = document.createElement('div'); b.className = 'bar'; const i = document.createElement('i');
+    i.style.width = Math.max(0, Math.min(100, c/m*100)) + '%'; if (c/m <= .5) i.className = 'low'; b.appendChild(i); box.appendChild(b);
+    const n = document.createElement('div'); n.className = 'hpn'; n.textContent = `${c} / ${m} HP`; box.appendChild(n);
+  } else if (t.health) {
+    const w = document.createElement('span'); w.className = 'word w' + Math.max(0, WORDS.indexOf(t.health)); w.textContent = t.health; box.appendChild(w);
+  }
+}
+function strip() {
+  const s = document.getElementById('strip'); s.replaceChildren();
+  const ai = order.indexOf(STATE.active);
+  order.forEach((id, k) => {
+    const t = byId[id], c = document.createElement('div');
+    c.className = 'tc k-' + kind(t) + (id === STATE.active ? ' now' : '') + (id === selected ? ' sel' : '') + (k < ai ? ' done' : '') + (t.down ? ' down' : '');
+    c.style.setProperty('--side', sideCol(t)); c.tabIndex = 0; c.setAttribute('role', 'button');
+    mk('div', 'band', KIND[kind(t)][0], c);
+    if (!EXPLORE) { const o = document.createElement('span'); o.className = 'ord'; o.textContent = k + 1; c.appendChild(o); }
+    { const w = document.createElement('div'); w.className = 'pw'; w.appendChild(pic(t, 'pic'));
+      if (t.ac && t.ac !== '?') mk('span', 'cb ac', '🛡️' + t.ac, w).title = 'Armor Class';
+      if (t.count > 1) mk('span', 'cnt', '×' + t.count, w).title = t.count + ' of them';
+      c.appendChild(w); }
+    const n = document.createElement('div'); n.className = 'nm'; n.textContent = t.short_name || t.name; c.appendChild(n);
+    const rl = (sheetOf(t) || {}).role || t.role; if (rl) { const e = document.createElement('div'); e.className = 'rl'; e.textContent = rl; c.appendChild(e); }
+    hpBar(t, c);
+    if ((t.conds && t.conds.length) || (t.tags && t.tags.length)) { const ch = document.createElement('div'); ch.className = 'chips'; for (const [x, k] of [...(t.conds||[]).map(x => [x, 'cond']), ...(t.tags||[]).map(x => [x, 'fx'])]) { const e = document.createElement('span'); e.className = 'chip ' + k; e.textContent = x; ch.appendChild(e); } c.appendChild(ch); }
+    if (t.note && (EXPLORE || sheetOf0(t))) { const e = document.createElement('div'); e.className = 'tn'; e.textContent = t.note; c.appendChild(e); }   // party notes (slots etc.) show in combat too; NPC notes only in explore
+    c.addEventListener('click', () => { select(id); openSheet(id); });
+    c.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(id); openSheet(id); } });
+    s.appendChild(c);
+  });
+  const a = s.querySelector('.now'); if (a && !strip.done) { s.scrollLeft = Math.max(0, a.offsetLeft - s.offsetLeft - 16); strip.done = true; }
+}
+function spot() {
+  const t = byId[selected], sp = document.getElementById('spot'); sp.replaceChildren();
+  const now = selected === STATE.active; sp.className = 'card spot' + (now ? ' now' : '');
+  const lb = document.createElement('span'); lb.className = 'label'; lb.textContent = now ? '✦ Now acting' : 'Looking at'; sp.appendChild(lb);
+  sp.appendChild(pic(t, 'big'));
+  const h = document.createElement('h2'); h.textContent = t.name; sp.appendChild(h);
+  if (t.role) { const r = document.createElement('div'); r.className = 'role'; r.textContent = t.role; sp.appendChild(r); }
+  const hb = document.createElement('div'); hb.style.cssText = 'width:100%;display:grid;gap:6px;justify-items:center'; health(t, hb); sp.appendChild(hb);
+  const st = document.createElement('div'); st.className = 'stats';
+  for (const [p, k] of [[t.x !== undefined && ('At ' + sq(t.x, t.y)), ''], [t.ac && t.ac !== '?' && ('AC ' + t.ac), ''], [t.speed && (t.speed + ' ft'), ''], ...(t.conds||[]).map(c => [c, ' cond']), ...(t.tags||[]).map(c => [c, ' fx'])].filter(a => a[0])) { const e = document.createElement('span'); e.className = 'pill' + k; e.textContent = p; st.appendChild(e); }
+  sp.appendChild(st);
+  if (t.note) { const n = document.createElement('p'); n.className = 'note'; n.textContent = t.note; sp.appendChild(n); }
+  if (sheetOf(t)) { const b = document.createElement('button'); b.className = 'sheetbtn'; b.textContent = '📜 Open character sheet'; b.onclick = () => openSheet(t.id); sp.appendChild(b); }
+  if (!now && STATE.active) { const b = document.createElement('button'); b.className = 'back'; b.textContent = 'Back to ' + byId[STATE.active].name; b.onclick = () => select(STATE.active); sp.appendChild(b); }
+}
+// ---------- character sheet panel (party members only) ----------
+const sheetOf = t => t && t.side === 'ally' && PARTY.chars && PARTY.chars[t.sheet || t.id];
+const mk = (tag, cls, txt, p) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; if (p) p.appendChild(e); return e; };
+let sheetTab = 'use';
+const CONDS = {  // 2014 PHB conditions, short form
+  Blinded:'Can\'t see. Attacks against it have advantage; its attacks have disadvantage.',
+  Charmed:'Can\'t attack the charmer; the charmer has advantage on social checks against it.',
+  Deafened:'Can\'t hear.',
+  Frightened:'Disadvantage on checks and attacks while the source is in sight; can\'t move closer to it.',
+  Grappled:'Speed 0.',
+  Incapacitated:'No actions or reactions.',
+  Invisible:'Attacks against it have disadvantage; its attacks have advantage.',
+  Paralyzed:'Incapacitated, can\'t move or speak. Fails STR and DEX saves. Attacks have advantage; hits from within 5 ft are crits.',
+  Petrified:'Turned to stone: incapacitated, resistant to all damage.',
+  Poisoned:'Disadvantage on attack rolls and ability checks.',
+  Prone:'Can only crawl; disadvantage on attacks. Attacks from within 5 ft have advantage, from farther away disadvantage.',
+  Restrained:'Speed 0. Disadvantage on attacks and DEX saves; attacks against it have advantage.',
+  Stunned:'Incapacitated, can\'t move. Fails STR and DEX saves; attacks against it have advantage.',
+  Unconscious:'Drops everything, falls prone. Fails STR and DEX saves; attacks have advantage, hits from within 5 ft are crits.',
+  Concentrating:'Taking damage forces a CON save (DC 10 or half the damage) to keep the spell.'
+};
+const FX = c => (PARTY.effects || {})[c] || (CONDS[c.split(' ')[0]] || '');
+function uses(t, name, left, max) {  // per-fight counts on the token (res) override party.json
+  const o = (t.res || {})[name]; if (o != null) { const [a, b] = String(o).split('/').map(Number); return [a, isNaN(b) ? max : b]; }
+  return [left, max];
+}
+function item(x, p, extra, off) {
+  const box = mk(x.text ? 'details' : 'div', 'it' + (off ? ' off' : ''), null, p), head = mk(x.text ? 'summary' : 'div', x.text ? '' : 'row', null, box);
+  if (x.slot) mk('span', 'slot', x.slot, head);
+  mk('span', 'n', (x.icon ? x.icon + ' ' : '') + x.name, head);
+  if (extra) for (const e of [].concat(extra)) if (e) head.appendChild(e);
+  if (x.tag) mk('span', 'tg', x.tag, head);
+  if (off) mk('span', 'why', off, head);
+  if (x.text) mk('p', '', x.text, box);
+}
+const LV = ['Cantrip', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th'];
+const KINDS = [['action', '⚔️ Action'], ['bonus', '⚡ Bonus action'], ['reaction', '🔁 Reaction'], ['free', '🎯 Free · no action needed'], ['rest', '🏕️ Out of combat · rests & rituals']];
+function dialogShell(dlg, sh, picSrc, title, sub, side) {
+  sh.replaceChildren();
+  const hd = mk('div', 'shhead', null, sh), pc = mk('div', 'pic', picSrc ? null : '🎒', hd);
+  if (side) pc.style.borderColor = side;
+  if (picSrc) { const i = mk('img', '', null, pc); i.src = picSrc; i.alt = ''; }
+  const nm = mk('div', '', null, hd); mk('h2', '', title, nm); mk('div', 'sub', sub || '', nm);
+  const x = mk('button', 'x', '✕', hd); x.setAttribute('aria-label', 'Close'); x.onclick = () => dlg.close();
+}
+function openSheet(id) {
+  const t = byId[id], c = sheetOf(t) || {}, dlg = document.getElementById('sheet');
+  if (!t) return;
+  const sh = document.getElementById('sh');
+  dialogShell(dlg, sh, PORT[t.img], t.name, c.role || t.role, sideCol(t));
+  if (!PORT[t.img]) sh.querySelector('.shhead .pic').textContent = t.short || '';
+  if (!sheetOf(t)) { const hb = mk('div', null, null, sh); hb.style.cssText = 'padding:12px 16px 0;max-width:320px'; hpBar(t, hb); }
+  const ps = mk('div', 'shstats', null, sh);
+  for (const v of [sheetOf(t) && t.hp && (t.hp + ' HP'), t.x !== undefined && ('At ' + sq(t.x, t.y)), t.ac && t.ac !== '?' && ('AC ' + t.ac), t.speed && (t.speed + ' ft'), ...(c.stats || [])].filter(Boolean)) mk('span', 'pill', v, ps);
+  if (t.note) mk('p', 'shnote', t.note, sh);
+  if ((t.conds && t.conds.length) || (t.tags && t.tags.length)) {
+    const nf = mk('div', 'shstats now-fx', null, sh); nf.style.display = 'grid';
+    mk('span', 'label', 'Right now', nf);
+    for (const c of t.conds || []) { const d = mk(CONDS[c] ? 'details' : 'div', 'it c', null, nf), h = mk(CONDS[c] ? 'summary' : 'div', CONDS[c] ? '' : 'row', null, d); mk('span', 'n', '⚠️ ' + c, h); if (CONDS[c]) mk('p', '', CONDS[c], d); }
+    for (const c of t.tags || []) { const tx = FX(c), d = mk(tx ? 'details' : 'div', 'it', null, nf), h = mk(tx ? 'summary' : 'div', tx ? '' : 'row', null, d); mk('span', 'n', '✨ ' + c, h); if (tx) mk('p', '', tx, d); }
+  }
+  if (!sheetOf(t)) { mk('div', 'shbody', null, sh).style.paddingBottom = '18px'; sh.scrollTop = 0; if (!dlg.open) dlg.showModal(); return; }
+  const tabs = mk('div', 'tabs', null, sh), body = mk('div', 'shbody', null, sh);
+  tabs.setAttribute('role', 'tablist');
+  // what's left right now: slots by level and counted resources
+  const slotLeft = {}; for (const s of c.slots || []) slotLeft[LV.indexOf(s.lvl)] = uses(t, s.lvl, s.left, s.max)[0];
+  const resLeft = {}; for (const r of c.resources || []) resLeft[r.name] = uses(t, r.name, r.left, r.max)[0];
+  const canCast = l => Object.keys(slotLeft).some(k => +k >= l && slotLeft[k] > 0);
+  function why(x) {  // null if usable now, otherwise the reason
+    if (x.needs && resLeft[x.needs] === 0) return x.lvl ? (canCast(x.lvl) ? null : 'Used · no slots') : 'Used up';
+    if (x.lvl && !canCast(x.lvl)) return 'No slots left';
+    return null;
+  }
+  function show(k) {
+    sheetTab = k; body.replaceChildren(); if (sh.scrollTop > tabs.offsetTop) sh.scrollTop = tabs.offsetTop;
+    for (const b of tabs.children) b.setAttribute('aria-selected', b.dataset.k === k);
+    if (k === 'use') {
+      const top = mk('div', 'left', null, body);
+      mk('span', 'label', 'Left to use', top);
+      if (c.slots && c.slots.length) {
+        const sl = mk('div', 'slots', null, top);
+        for (const s of c.slots) {
+          const [l, m] = uses(t, s.lvl, s.left, s.max), w = mk('span', '', `${s.lvl} ${l}/${m}`, sl), pp = mk('span', 'pips', null, w);
+          for (let i = 0; i < m; i++) mk('i', i < l ? 'on' : '', null, pp);
+        }
+        if (c.spellcasting) mk('p', 'cast', c.spellcasting, top);
+      }
+      if (c.resources && c.resources.length) {
+        const rr = mk('div', 'rescount', null, top);
+        for (const r of c.resources) { const [l, m] = uses(t, r.name, r.left, r.max); mk('span', 'rc' + (l ? '' : ' out'), `${r.icon || ''} ${r.name} ${l}/${m}${r.unit ? ' ' + r.unit : ''}`, rr); }
+      }
+      for (const [kind, label] of KINDS) {
+        const xs = (c.use || []).filter(x => x.kind === kind); if (!xs.length) continue;
+        mk('h3', '', label, body);
+        const ok = xs.filter(x => !why(x)), no = xs.filter(x => why(x));
+        for (const x of [...ok, ...no]) item(x, body, x.lvl != null && mk('span', 'lv', LV[x.lvl]), why(x));
+      }
+      if (c.spellbook && c.spellbook.length) {
+        const d = mk('details', 'book', null, body), s = mk('summary', '', null, d);
+        mk('span', '', `📕 In the spellbook, not prepared (${c.spellbook.length})`, s);
+        mk('p', 'cast', "Can't be cast today. Swap them in after a long rest.", d);
+        for (const x of c.spellbook) item(x, d, mk('span', 'lv', LV[x.lvl]), 'Not prepared');
+      }
+    } else if (k === 'passive') {
+      mk('p', 'cast', 'Always on. Nothing to spend, nothing to choose.', body);
+      for (const x of c.passive || []) item(x, body);
+    } else if (k === 'equipped') {
+      for (const e of c.equipped || []) item(e, body);
+    } else {
+      for (const e of c.inventory || []) item(e, body);
+      if (PARTY.shared) { const b = mk('button', 'packlink', '🎒 Party pack: purse, rations, mounts…', body); b.onclick = openPack; }
+    }
+    if (PARTY.asof) mk('p', 'asof', 'Sheet as of ' + PARTY.asof + (t.res ? ' · counts updated for this fight' : ''), body);
+  }
+  for (const [k, label] of [['use', '⚔️ Use'], ['passive', '🌙 Passive'], ['equipped', '🛡️ Gear'], ['inventory', '🎒 Bag']]) { const b = mk('button', '', label, tabs); b.dataset.k = k; b.setAttribute('role', 'tab'); b.onclick = () => show(k); }
+  show(['use', 'passive', 'equipped', 'inventory'].includes(sheetTab) ? sheetTab : 'use');
+  if (!dlg.open) dlg.showModal();
+}
+function openPack() {  // the party's shared things, kept out of personal inventories
+  const dlg = document.getElementById('sheet'), sh = document.getElementById('sh');
+  dialogShell(dlg, sh, null, 'Party pack', 'Shared by the whole party');
+  const body = mk('div', 'shbody', null, sh); body.style.paddingTop = '14px';
+  for (const e of (PARTY.shared || {}).inventory || []) item(e, body);
+  if (PARTY.asof) mk('p', 'asof', 'As of ' + PARTY.asof, body);
+  sh.scrollTop = 0;
+  if (!dlg.open) dlg.showModal();
+}
+// ---------- quest journal ----------
+let journalTab = 'main';
+function jitem(e, p, done) {
+  const box = mk('details', 'it', null, p), head = mk('summary', '', null, box);
+  mk('span', 'n', (e.icon ? e.icon + ' ' : '') + e.title, head);
+  if (done) mk('span', 'why', 'Done', head);
+  if (e.text) mk('p', '', e.text, box);
+  if (e.next) mk('span', 'next', '➡️ Next: ' + e.next, box);
+  if (e.where) mk('span', 'where', '📍 ' + e.where, box);
+  if (e.people && e.people.length) { const f = mk('div', 'faces', null, box); for (const k of e.people) if (PORT[k]) { const i = mk('img', '', null, f); i.src = PORT[k]; i.alt = k; i.title = k; } }
+  if (!done && p.childElementCount <= 2) box.open = true;
+}
+function openJournal() {
+  const dlg = document.getElementById('sheet'), sh = document.getElementById('sh');
+  dialogShell(dlg, sh, null, 'Journal', 'What your hero knows · no spoilers');
+  sh.querySelector('.shhead .pic').textContent = '📜';
+  const tabs = mk('div', 'tabs', null, sh), body = mk('div', 'shbody', null, sh);
+  function show(k) {
+    journalTab = k; body.replaceChildren();
+    for (const b of tabs.children) b.setAttribute('aria-selected', b.dataset.k === k);
+    // keep it short however long the campaign runs: only live entries are open; the rest fold away
+    const all = JOURNAL[k] || [], live = all.filter(e => !e.status || e.status === 'active'), hold = all.filter(e => e.status === 'hold');
+    const cap = k === 'loose' ? (JOURNAL.loose_limit || 6) : 99, shown = live.slice(0, cap), older = live.slice(cap);
+    if (!shown.length) mk('p', 'cast', 'Nothing here right now.', body);
+    for (const e of shown) jitem(e, body, false);
+    const fold = (label, xs, done) => { if (!xs.length) return; const d = mk('details', 'book', null, body), s = mk('summary', '', null, d); mk('span', '', `${label} (${xs.length})`, s); for (const e of xs) jitem(e, d, done); };
+    fold('⏸️ On hold', hold, false);
+    fold('🗃️ Older loose ends', older, false);
+    if (k === 'main') {
+      const done = JOURNAL.done || [], chapters = [...new Set(done.map(e => e.chapter || 'Earlier'))];
+      for (const ch of chapters) fold('✅ Done · ' + ch, done.filter(e => (e.chapter || 'Earlier') === ch), true);
+    }
+    if (JOURNAL.asof) mk('p', 'asof', 'As of ' + JOURNAL.asof, body);
+  }
+  for (const [k, label] of [['main', '⭐ Main'], ['side', '🧭 Side'], ['loose', '🧵 Loose ends']]) { const b = mk('button', '', label, tabs); b.dataset.k = k; b.setAttribute('role', 'tab'); b.onclick = () => show(k); }
+  show(journalTab);
+  sh.scrollTop = 0;
+  if (!dlg.open) dlg.showModal();
+}
+if (JOURNAL && JOURNAL.main) {
+  const jc = document.getElementById('jcard'); jc.hidden = false;
+  const lb = mk('span', 'label', '📜 Journal', jc);
+  const m = JOURNAL.main.find(e => e.status !== 'done') || JOURNAL.main[0];
+  if (m) { mk('h2', '', (m.icon ? m.icon + ' ' : '') + m.title, jc); if (m.next) { const l = mk('div', 'jline', null, jc); mk('b', '', 'Next:', l); mk('span', '', m.next, l); } }
+  const cnt = mk('div', 'stats', null, jc); cnt.style.justifyContent = 'flex-start';
+  for (const [k, n] of [['main', 'main'], ['side', 'side'], ['loose', 'loose ends']]) mk('span', 'pill', `${(JOURNAL[k] || []).filter(e => e.status !== 'done').length} ${n}`, cnt);
+  const b = mk('button', 'sheetbtn', '📜 Open journal', jc); b.onclick = openJournal;
+}
+if (SCENE) { document.getElementById('hero').hidden = false; document.getElementById('heroimg').src = SCENE; document.getElementById('heroimg').alt = STATE.scene_alt || STATE.title; }
+document.getElementById('sheet').addEventListener('click', e => { if (e.target.id === 'sheet') e.target.close(); });  // tap outside to close
+
+function draw() { gTok.replaceChildren(); for (const t of tokens) if (t.id !== selected) token(t); if (byId[selected]) token(byId[selected]); strip(); }
+function select(id) { selected = id; draw(); }
+
+const lg = document.getElementById('legend'), used = new Set(M.join(''));
+for (const k in T) if (used.has(k)) { const d = document.createElement('div'); const sv = el('svg', {class:'tile', viewBox:'0 0 30 30', 'aria-hidden':'true'}, d); tile(k, 0, 0, 30, sv); const s = document.createElement('span'); s.textContent = T[k].name; d.appendChild(s); lg.appendChild(d); }
+for (const [c, n] of [['#3E6B6A', 'Party ring'], ['#B4463E', 'Foe ring'], ['#C99A4A', STATE.neutralLabel || 'Others'], ...(EXPLORE ? [] : [['#E8C15A', 'Whose turn it is']])]) { const d = document.createElement('div'); d.innerHTML = '<span class="sw"></span><span></span>'; d.firstChild.style.cssText = `background:transparent;border:3px solid ${c};border-radius:50%`; d.lastChild.textContent = n; lg.appendChild(d); }
+document.getElementById('title').textContent = STATE.title;
+document.getElementById('round').textContent = EXPLORE ? (STATE.time || 'Exploring') : 'Round ' + STATE.round;
+document.getElementById('strip').setAttribute('aria-label', EXPLORE ? 'In this scene' : 'Turn order');
+document.getElementById('status').innerHTML = STATE.status;
+document.getElementById('striplabel').textContent = CHARS ? 'Characters' : EXPLORE ? 'In this scene' : 'Turn order';
+if (CHARS) { document.querySelector('.main').style.display = 'none'; document.getElementById('strip').classList.add('grid'); }
+draw();
+</script>

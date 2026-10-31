@@ -1,0 +1,111 @@
+{
+  "_about": "Single source of truth for party state (Thanawat, 2026-10-28). Update every turn; build the scene map's numbers from this file.",
+  "asof": "Day 21 ~1:30 pm. COMBAT round 2 (Holt up): chasing Sim Rook along the old millstream dike.",
+  "location": "The old millstream, halfway between the drowned mill and Mossend, in Agna's punt.",
+  "scene_map": "battlemap/river-04.json",
+  "party": {
+    "thal": {
+      "hp": "41/41",
+      "ac": 15,
+      "pos": "X3 (on the dike path)",
+      "slots": {
+        "1st": "3/5",
+        "2nd": "3/4",
+        "3rd": "2/3"
+      },
+      "resources": {
+        "Arcane Ward": "14/14",
+        "Arcane Recovery": "1/1",
+        "Hit Dice": "5/5 d6"
+      },
+      "effects": [
+        "Mage Armor (AC 15, until ~2:30 pm)"
+      ],
+      "conditions": [],
+      "house_rule": "+1 bonus slot per spell level (was +2 until dawn day 21)"
+    },
+    "wren": {
+      "hp": "19/34",
+      "ac": 15,
+      "pos": "G9 (bow of the punt)",
+      "slots": {
+        "1st": "3/3"
+      },
+      "resources": {
+        "Hunter's Sense": "2/2",
+        "Favored Foe": "2/2",
+        "Speak with Animals (free cast)": "1/1",
+        "Hit Dice": "4/4 d10"
+      },
+      "effects": [
+        "Slayer's Prey on Sim Rook's horse"
+      ],
+      "conditions": []
+    },
+    "holt": {
+      "hp": "46/46",
+      "ac": 18,
+      "pos": "E9 (in the punt)",
+      "resources": {
+        "Second Wind": "1/1",
+        "Action Surge": "1/1",
+        "Hit Dice": "5/5 d10"
+      },
+      "effects": [
+        "Warhammer and shield in hand"
+      ],
+      "conditions": []
+    }
+  },
+  "companions": {
+    "teal": {
+      "pos": "D9 (stern, poling)",
+      "conditions": [],
+      "note": "Guiding the party to the drowned mill."
+    },
+    "cal": {
+      "pos": "Mossend, with Agna",
+      "conditions": []
+    },
+    "pip": {
+      "pos": "Mossend, with Agna",
+      "conditions": [],
+      "note": "Ring's charm broken by her ribbon."
+    },
+    "dobb": {
+      "pos": "Mossend, with Agna",
+      "conditions": [],
+      "note": "Faint enchantment thread (Ring remnant), slack while the bundle is away."
+    },
+    "moll": {
+      "pos": "Mossend, with Agna",
+      "conditions": [],
+      "note": "Faint enchantment thread (Ring remnant), slack while the bundle is away."
+    },
+    "fen": {
+      "pos": "Mossend, with Agna",
+      "conditions": [],
+      "note": "Faint enchantment thread (Ring remnant), slack while the bundle is away."
+    },
+    "turnip": {
+      "pos": "Mossend, with the horses",
+      "hp": "11/11",
+      "conditions": [],
+      "note": "Fully healed by Wren's Cure Wounds (day 20 night)."
+    },
+    "pim": {
+      "pos": "Riding west to Bors (left at first light day 21)",
+      "conditions": [],
+      "note": "Market Prep at Odda's; then rides to Bors at first light day 21 with Thal's message. Next pay due day 46."
+    }
+  },
+  "elsewhere": {
+    "granny_rush": "At the drowned mill; cannot cross running water until Sedge dies."
+  },
+  "travel": {
+    "vehicle": "Agna's punt: scorched by Thal's Fireball, fire out, still afloat",
+    "last_rest": "Long rest, night of Day 20 (Mossend), finished dawn Day 21",
+    "plan": "Back to Mossend (arrive ~3:30 pm): free the children, recruit Bors and Mossend. Granny Rush stays at the mill (curse)."
+  },
+  "grey_bundle": "Hag's hand mirror, still wrapped (extra layers), hidden in the burned stilt house at the east end of Mossend."
+}

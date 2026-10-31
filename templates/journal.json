@@ -1,0 +1,19 @@
+{
+  "_about": "Player-facing quest journal shown on the scene map. Only what the main character knows: no DM secrets. Entries: title, icon, text, next, where, people (portrait ids), status (active | hold | done). Loose ends = threads noticed but not followed up; only the newest loose_limit show. Done entries carry chapter (e.g. '1.2').",
+  "asof": "Day 1",
+  "loose_limit": 6,
+  "main": [
+    {
+      "title": "Main quest 1 title",
+      "icon": "⭐",
+      "status": "active",
+      "text": "What the hero knows so far.",
+      "next": "The next step.",
+      "where": "Where it leads",
+      "people": []
+    }
+  ],
+  "side": [],
+  "loose": [],
+  "done": []
+}

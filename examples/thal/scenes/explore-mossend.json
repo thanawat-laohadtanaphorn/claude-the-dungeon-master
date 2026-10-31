@@ -1,0 +1,412 @@
+{
+ "title": "Mossend at dawn",
+ "mode": "explore",
+ "time": "Day 21 · dawn (~6:30 am)",
+ "status": "<b>Long rest done.</b> Pip's ribbon did nothing for Moll, but carrying Varrick's bundle away to the burned stilt house left the children's threads slack, and the rest of the night was quiet. Thal woke from a dream of Ysolde with less frost in his blood (one bonus slot per level now). Pim rides west for Bors.",
+ "neutralLabel": "Mossend folk",
+ "pens": [],
+ "map": [
+  "~rrr~rrrHHHr~HHH~rXXXrrXXXrr~rrr",
+  "rr~~~~~~HHH~~HHH~~XXX~~XXX~~~~~~",
+  "rr~~~~~~HHH~~HHH~~XXX~~XXX~~~~~r",
+  "r~~~~~bbbbbbbbbbbbbbbbbbbbbb~~~r",
+  "~r~SS~b~~~RRR~~~~~~~~~~~~~~b~~~r",
+  "rr~SSLb~~~RRR~t~~~~~~~~~~~~b~~~~",
+  "rr~~~~b~~~RRR~~~~~~t~~hXXX~b~~~r",
+  "r~~~~~b~~~~~~~~~~~~~~~hXXX~b~~~r",
+  "ccccccbbbbbbbbbbb~~~~~hXXXbb~~~r",
+  "ccccccb~~~~~~~~~~~~~~~hhhhbb~~~~",
+  "rr~~~bb~~~HHH~~~~~~~~~hhhh~b~~~r",
+  "r~~~~~b~~~HHH~~mm~~~t~~~~~~b~~~r",
+  "~r~~~~b~~~HHH~~~m~~~~~~~~~~b~~~r",
+  "rr~~~~b~~~~~~~~~~~~~~~~~~~~b~~~~",
+  "rr~~~~bbbbbbbbbbbbbbbbbbbbbb~~~r",
+  "r~~~~~~~~iii~~~HHH~~~XXX~~~~~~~r",
+  "~r~~~~~~~iii~~~HHH~~~XXX~~~~~~~r",
+  "rrr~rrr~rHHHrrrHHHr~rXXXrrr~rrr~"
+ ],
+ "labels": [
+  {
+   "x": 0.2,
+   "y": 7.6,
+   "text": "FROM THE WEIR",
+   "size": 10,
+   "color": "#F3E4D6"
+  },
+  {
+   "x": 9.6,
+   "y": 3.7,
+   "text": "REEVE-HOUSE",
+   "size": 10,
+   "color": "#F3E4D6"
+  },
+  {
+   "x": 22,
+   "y": 5.7,
+   "text": "BURNED",
+   "size": 10,
+   "color": "#F3E4D6"
+  },
+  {
+   "x": 31.8,
+   "y": 17.6,
+   "text": "THE MIRE →",
+   "size": 10,
+   "anchor": "end",
+   "color": "#F3E4D6"
+  },
+  {
+   "x": 8.6,
+   "y": 14.5,
+   "text": "ODDA'S STORES",
+   "size": 10,
+   "color": "#F3E4D6"
+  },
+  {
+   "x": 1.6,
+   "y": 11.8,
+   "text": "LANDING (EMPTY)",
+   "size": 10,
+   "color": "#F3E4D6"
+  },
+  {
+   "x": 0.2,
+   "y": 11.6,
+   "text": "← LAST HOUND SWAM OFF",
+   "size": 9,
+   "color": "#F8B848"
+  },
+  {
+   "x": 22.1,
+   "y": 9.7,
+   "text": "GREY BUNDLE (HIDDEN IN THE BURNED HOUSE)",
+   "size": 9,
+   "color": "#F8B848"
+  }
+ ],
+ "tokens": [
+  {
+   "id": "agna",
+   "name": "Agna Rusk",
+   "short": "AG",
+   "img": "agna",
+   "side": "ally",
+   "x": 10,
+   "y": 5,
+   "ac": 10,
+   "speed": 30,
+   "role": "Reeve of Mossend",
+   "tags": [],
+   "note": "Asleep by the hearth.",
+   "conds": []
+  },
+  {
+   "id": "horses",
+   "name": "Riding horses",
+   "short_name": "Horses",
+   "count": 3,
+   "img": "horses",
+   "short": "HS",
+   "side": "ally",
+   "x": 3,
+   "y": 8,
+   "size": 2,
+   "role": "The grey, the bay and the brown",
+   "tags": [],
+   "note": "Standing guard round Wren and Turnip at the landing.",
+   "conds": []
+  },
+  {
+   "id": "odda",
+   "name": "Odda Fenn",
+   "short": "OF",
+   "img": "odda",
+   "side": "neutral",
+   "x": 10,
+   "y": 16,
+   "ac": 10,
+   "speed": 30,
+   "role": "Storekeeper and eel-smoker",
+   "tags": [],
+   "note": "Asleep in her stores.",
+   "conds": []
+  },
+  {
+   "id": "thal",
+   "name": "Thal",
+   "short": "TH",
+   "img": "thal",
+   "side": "ally",
+   "x": 12,
+   "y": 4,
+   "hp": "41/41",
+   "ac": 12,
+   "speed": 30,
+   "role": "Wizard 5 (Abjuration)",
+   "tags": [],
+   "note": "Slots 1st 5/5, 2nd 4/4, 3rd 3/3 (bonus now +1). Ward forms at his first abjuration. Mage Armor ended.",
+   "conds": [],
+   "invisible": false,
+   "res": {
+    "1st": "5/5",
+    "2nd": "4/4",
+    "3rd": "3/3",
+    "Arcane Ward": "0/14",
+    "Arcane Recovery": "1/1",
+    "Hit Dice": "5/5"
+   },
+   "focus": true
+  },
+  {
+   "id": "wren",
+   "name": "Wren",
+   "short": "WR",
+   "img": "wren",
+   "side": "ally",
+   "x": 11,
+   "y": 4,
+   "hp": "34/34",
+   "ac": 15,
+   "speed": 30,
+   "role": "Ranger 4 (Monster Slayer)",
+   "tags": [],
+   "note": "Rested. 1st 3/3.",
+   "conds": [],
+   "res": {
+    "1st": "3/3",
+    "Hunter's Sense": "2/2",
+    "Favored Foe": "2/2",
+    "Speak with Animals (free cast)": "1/1",
+    "Hit Dice": "4/4"
+   }
+  },
+  {
+   "id": "holt",
+   "name": "Holt",
+   "short": "HO",
+   "img": "holt",
+   "side": "ally",
+   "x": 10,
+   "y": 4,
+   "hp": "46/46",
+   "ac": 18,
+   "speed": 30,
+   "role": "Fighter 5 (Champion)",
+   "tags": [],
+   "note": "Rested. Second Wind and Action Surge back.",
+   "conds": [],
+   "res": {
+    "Second Wind": "1/1",
+    "Action Surge": "1/1",
+    "Hit Dice": "5/5"
+   }
+  },
+  {
+   "id": "turnip",
+   "name": "Turnip",
+   "short": "TU",
+   "img": "turnip",
+   "side": "ally",
+   "x": 2,
+   "y": 8,
+   "hp": "11/11",
+   "ac": 10,
+   "down": false,
+   "role": "Thal's mule, leader of the herd",
+   "conds": [],
+   "tags": [],
+   "note": "Fully healed by Wren's Cure Wounds."
+  },
+  {
+   "id": "teal",
+   "name": "Teal",
+   "short": "TE",
+   "img": "teal",
+   "side": "ally",
+   "x": 12,
+   "y": 5,
+   "ac": 11,
+   "role": "Agna's son, punt guide",
+   "note": "Asleep.",
+   "conds": [],
+   "tags": []
+  },
+  {
+   "id": "cal",
+   "name": "Cal",
+   "short": "CA",
+   "img": "cal",
+   "side": "ally",
+   "x": 4,
+   "y": 4,
+   "ac": 10,
+   "role": "Wren's brother",
+   "small": true,
+   "note": "Awake in the smokehouse.",
+   "conds": [],
+   "tags": []
+  },
+  {
+   "id": "pip",
+   "name": "Pip",
+   "short": "PI",
+   "img": "pip",
+   "side": "ally",
+   "x": 10,
+   "y": 6,
+   "ac": 10,
+   "role": "Agna's granddaughter",
+   "small": true,
+   "note": "Her ribbon is back on her wrist.",
+   "conds": [],
+   "tags": [
+    "Ribbon: faint abjuration"
+   ]
+  },
+  {
+   "id": "dobb",
+   "name": "Dobb",
+   "short": "DO",
+   "img": "dobb",
+   "side": "ally",
+   "x": 12,
+   "y": 6,
+   "ac": 10,
+   "role": "Rescued child",
+   "small": true,
+   "note": "Asleep. The same thin thread of enchantment clings to him.",
+   "conds": [],
+   "tags": [
+    "Faint enchantment (slack)"
+   ]
+  },
+  {
+   "id": "moll",
+   "name": "Moll",
+   "short": "MO",
+   "img": "moll",
+   "side": "ally",
+   "x": 11,
+   "y": 5,
+   "ac": 10,
+   "role": "Rescued child",
+   "small": true,
+   "note": "Slept the rest of the night. Her thread went slack once the bundle was moved.",
+   "conds": [],
+   "tags": [
+    "Faint enchantment (slack)"
+   ]
+  },
+  {
+   "id": "fen",
+   "name": "Fen",
+   "short": "FE",
+   "img": "fen",
+   "side": "ally",
+   "x": 11,
+   "y": 6,
+   "ac": 10,
+   "role": "Rescued child",
+   "small": true,
+   "note": "Asleep. The same thin thread of enchantment clings to him.",
+   "conds": [],
+   "tags": [
+    "Faint enchantment (slack)"
+   ]
+  },
+  {
+   "id": "varrick",
+   "name": "Varrick",
+   "short_name": "Varrick",
+   "img": "varrick",
+   "side": "foe",
+   "x": 22,
+   "y": 8,
+   "ac": "?",
+   "health": "Down",
+   "role": "Captain of the Grey Hounds",
+   "tags": [],
+   "conds": [],
+   "note": "Dead, under sacking on the burned platform. Searched.",
+   "down": true
+  }
+ ],
+ "terrain": {
+  "~": {
+   "name": "Black water between the stilts (deep: swim, difficult terrain)",
+   "fill": "#3E5A5A",
+   "ink": "#4E6A6A"
+  },
+  "r": {
+   "name": "Reed bed in shallow water (difficult terrain; lightly obscured)",
+   "fill": "#5A6A3A",
+   "ink": "#8A9A5A",
+   "mark": "reeds"
+  },
+  "c": {
+   "name": "Causeway from the eel-weir",
+   "fill": "#8A7E58",
+   "ink": "#6A6040"
+  },
+  "b": {
+   "name": "Boardwalk (5 ft wide, no rail)",
+   "fill": "#A8845A",
+   "ink": "#7A5E3E",
+   "mark": "planks"
+  },
+  "h": {
+   "name": "House platform",
+   "fill": "#8A6A48",
+   "ink": "#6E5238",
+   "mark": "planks"
+  },
+  "H": {
+   "name": "Stilt house (walls; blocks)",
+   "fill": "#C9A65A",
+   "ink": "#9C7E3E",
+   "mark": "roof"
+  },
+  "X": {
+   "name": "Burned-out stilt house (charred shell; blocks)",
+   "fill": "#3A302A",
+   "ink": "#5A4A3E",
+   "mark": "roof"
+  },
+  "S": {
+   "name": "Eel smokehouse roof, 15 ft up (high ground; half cover)",
+   "fill": "#7A6A54",
+   "ink": "#5A4A3A",
+   "mark": "roof"
+  },
+  "L": {
+   "name": "Ladder up to the smokehouse roof (costs 5 ft extra)",
+   "fill": "#A8845A",
+   "ink": "#5A4430",
+   "mark": "ladder"
+  },
+  "m": {
+   "name": "Mud islet (difficult terrain)",
+   "fill": "#6A5E44",
+   "ink": "#54483A"
+  },
+  "t": {
+   "name": "Eel trap stakes (blocks; half cover)",
+   "fill": "#3E5A5A",
+   "ink": "#2A2218",
+   "mark": "stake"
+  },
+  "i": {
+   "name": "Odda's Stores (shop floor, under a roof)",
+   "fill": "#B89A72",
+   "ink": "#9C7E58",
+   "mark": "planks"
+  },
+  "R": {
+   "name": "Agna's reeve-house (inside, under a roof)",
+   "fill": "#A8845A",
+   "ink": "#7A5E3E",
+   "mark": "planks"
+  }
+ },
+ "selected": "thal"
+}

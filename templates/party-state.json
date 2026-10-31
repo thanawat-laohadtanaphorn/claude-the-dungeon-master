@@ -1,0 +1,29 @@
+{
+  "_about": "Single source of truth for the party. Update every turn; build the scene map's numbers from this file.",
+  "asof": "Day 1, morning. Not in combat.",
+  "location": "Where the party is.",
+  "scene_map": "scenes/<scene>-01.json",
+  "party": {
+    "hero": {
+      "hp": "10/10",
+      "ac": 12,
+      "pos": "C4",
+      "slots": {
+        "1st": "2/2"
+      },
+      "resources": {
+        "Hit Dice": "1/1 d8"
+      },
+      "effects": [],
+      "conditions": []
+    }
+  },
+  "companions": {
+    "companion": {
+      "pos": "D4",
+      "conditions": [],
+      "note": ""
+    }
+  },
+  "notes": []
+}
