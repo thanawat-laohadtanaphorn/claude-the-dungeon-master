@@ -36,9 +36,9 @@ Everything below (3 stages, who the quest is about, the twist) is the **default*
 
 ## Thread names
 
-`MainQuest.Stage.Running Name`, e.g. `1.3.2. Thal at Coldhearth` is main quest 1, stage 3, episode 2.
+`MainQuest.Post Name`, e.g. `3.2. Thal at Coldhearth` is main quest 3, second thread of that quest.
 
-- A new stage starts a new thread: `1.2.1. ...` after `1.1.x`.
-- A long thread (about 20 player turns) ends at a calm point and continues in the next running number: `1.2.2. ...`.
+- Posts are numbered from 1 within each main quest: `1.1.`, `1.2.`, `1.3.` …
+- The next post starts when a new stage begins, or when a thread gets long (about 20 player turns), always at a calm point.
 - Claude opens each new thread itself: the story thread asks the project's coordinator to start it, with the name and a handoff of the current state. The player just keeps playing in the new thread.
-- A new main quest starts at `N.1.1.`.
+- A new main quest starts again at `N.1.`, e.g. main quest 3 opens with `3.1.`.
