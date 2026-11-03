@@ -10,5 +10,5 @@ Race, class and level, background, a line on looks and personality. Full sheet: 
 - Main quest 1: <spoiler-free one line> (in progress)
 
 ## The story so far
-### 1.1.1. <thread name>
+### 1.1. <thread name>
 A short, player-facing summary of what happened.
