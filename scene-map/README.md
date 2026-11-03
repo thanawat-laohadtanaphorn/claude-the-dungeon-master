@@ -25,7 +25,7 @@ Needs Python 3 and Pillow (`pip install pillow`). The build refuses to run if an
 | Field | Meaning |
 | --- | --- |
 | `id`, `name`, `short_name` | Id, full name, short label for the cards |
-| `img` | Portrait id: `portraits/<img>.jpg` (required) |
+| `img` | Picture id: `portraits/<img>.jpg`, the character's one picture (required). Token and card face crops are cut from it, using `portraits/faces.json` if present |
 | `side` | `ally`, `foe`, or anything else for neutral. Party members are allies with an entry in `party.json` |
 | `x`, `y` | Square (0-based) |
 | `hp` | Allies: `"cur/max"`, shown exactly with a bar |
