@@ -26,6 +26,11 @@ What the player doesn't know, when it's revealed, and the clues that set it up (
 ## Rewards
 XP or milestone, treasure, a change for the companion this quest is about.
 
+**Spell scrolls and magic items (1 to 2 of each at most, never sold in shops):**
+| Item or scroll | Tied to (person, place, event) | Found when and how (stage) |
+| --- | --- | --- |
+| | | |
+
 ## If the player goes off-script
 Hooks that pull the story back without forcing it.
 

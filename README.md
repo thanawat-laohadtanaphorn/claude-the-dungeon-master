@@ -35,6 +35,7 @@ Tap any character for their panel (spells, abilities, gear and bag), or open the
 
 - 🗺️ **Scene map** for every fight and scene: a top-down 5 ft grid with named squares (C10), terrain and a legend, portrait cards, and a built-in quest journal. **Combat mode** shows turn order and who's acting; **exploring mode** shows who's in the scene.
 - 📜 **Main quests with direction:** by default every main quest has 3 stages and at least one twist, the first is about your hero, and later ones are about a companion or familiar. Before each one, Claude interviews you (you can change any of these defaults there) and drafts the whole quest in a hidden DM file, so the story never drifts.
+- ✨ **Rare, meaningful magic:** spell scrolls and magic items come only from the story, never from shops, 1 to 2 of each per main quest. Each one is tied to a person, place or event, so every new spell or item has a story behind it. (A default you can change.)
 - 📖 **Quest journal** to track your quests: main quests, side quests and loose ends, each with what you know so far, the next step, where it leads and who's involved. Finished quests fold into Done, chapter by chapter. It's built into every scene map, and it only holds what your character knows, so there are no spoilers.
 - 🧵 **Thread naming** that tracks where you are: `3.2. Thal at Coldhearth` = main quest 3, second thread.
 - 🔁 **New episodes open themselves**: after about 20 turns (or at a new stage), Claude closes at a calm point and has the project's coordinator start the next thread with a full recap of HP, slots, position and quests. You just keep playing.
@@ -82,6 +83,7 @@ Each main quest is played in a series of story threads, named `MainQuest.Post Na
 ## Make it yours
 
 - **House rules:** none are built in. Add yours to [`house-rules.md`](house-rules.md); it ships with *flammable grease* as an example you can edit or delete.
+- **Rare magic:** don't want it? Say so in a pre-main-quest interview, or edit the *Spell scrolls and magic items* section of the instructions.
 - **Portraits:** bring your own pictures for your characters ([`guides/portraits.md`](guides/portraits.md)).
 - **Anything else:** the instructions are plain text. Change what you like.
 

@@ -21,6 +21,7 @@ Everything below (3 stages, who the quest is about, the twist) is the **default*
 - **3 stages.** Each stage has a clear goal, a place, a main obstacle and an ending that opens the next stage.
 - **At least one twist,** set up with clues in earlier stages so it feels fair in hindsight.
 - Room for side quests and loose ends, but the journal always shows the main quest's next step.
+- **Rare magic:** 1 to 2 new spell scrolls and about 1 to 2 magic items per main quest, never bought from vendors. Each is tied to a person, place or event of the quest and planned in the draft's Rewards.
 
 ## Interview questions (pick what fits, keep them spoiler-free)
 
