@@ -41,7 +41,7 @@ Tap any character for their panel (spells, abilities, gear and bag), or open the
 - ⚔️ **Turn-by-turn combat:** your party acts one character at a time, and Claude waits for your orders. Enemies act on their own.
 - ⚖️ **Rules kept honest:** 5e 2014 (SRD 5.1). Anything illegal is flagged before the roll, with legal options.
 - 📋 **Party state file:** one JSON file holds HP, slots, resources and positions, and the map is built from it.
-- 🖼️ **Portraits for every character:** Claude finds one on the internet (public-domain paintings or freely licensed photos, with credits), or you give it a picture you found or made yourself. For important NPCs, Claude shows a few options for you to pick from. Each portrait is reused whenever that character returns, it's their token on the map, and every name in the story links to it.
+- 🖼️ **One picture for every character:** Claude finds one on the internet (public-domain paintings or freely licensed photos, with credits), or you give it a picture you found or made yourself. For important NPCs, Claude shows a few options for you to pick from. That one picture is shown two ways: as a **portrait** (a face crop on the map's tokens and cards) and as a **figure** (the whole picture, opened from every linked name in the story). It's reused whenever that character returns.
 - 🎚️ **Level-up interviews:** Claude never picks your choices for you.
 - ✅ **A pre-post checklist** Claude runs before every story post.
 
@@ -94,7 +94,7 @@ Each stage is played in one or more story threads, named `MainQuest.Stage.Runnin
 | `guides/` | Main quests, portraits, level-ups |
 | `templates/` | Blank party state, journal, character panels, scene, campaign log, sheets, and the DM-only main quest plan |
 | `scene-map/` | The map page, its build script and field reference |
-| `tools/crop_portrait.py` | Crops any picture to a 1020x960 portrait |
+| `tools/set_face.py` | Records where the face is in a character's picture, for the map's face crops |
 | `examples/thal/` | A real campaign in progress: Thal, Wren and Holt |
 
 ## Credits and licences

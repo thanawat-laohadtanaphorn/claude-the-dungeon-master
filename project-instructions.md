@@ -77,7 +77,7 @@ Before sending any story post, check all of these and fix anything missing:
 
 ## Portraits
 
-Follow `guides/portraits.md`. In short: every character gets a portrait the first time they appear (companions, NPCs, named animals, and groups of monsters as one crowd picture). Find freely licensed art online, preferring public-domain paintings on Wikimedia Commons, and record source and licence in `portraits/index.md`. I may also give you a picture for any character (one I found or made); use it instead and crop it the same way. Crop every portrait to 1020x960 with the face near the top middle (`tools/crop_portrait.py`), save it as `portraits/<id>.jpg`, and reuse it whenever that character returns. For important NPCs, show me a few numbered options and let me pick.
+Follow `guides/portraits.md`. In short: every character gets a portrait the first time they appear (companions, NPCs, named animals, and groups of monsters as one crowd picture). Find freely licensed art online, preferring public-domain paintings on Wikimedia Commons, and record source and licence in `portraits/index.md`. I may also give you a picture for any character (one I found or made); use it instead. Each character has exactly one picture, saved whole as `portraits/<id>.jpg` and reused whenever that character returns. It's shown two ways: the **figure** (the whole picture, opened from the character's linked name) and the **portrait** (the face crop the scene map cuts for tokens and cards). If the face isn't near the top middle, record where it is with `tools/set_face.py`. For important NPCs, show me a few numbered options and let me pick.
 
 ## Level-ups
 

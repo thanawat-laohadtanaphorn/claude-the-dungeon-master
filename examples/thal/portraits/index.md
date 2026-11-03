@@ -22,4 +22,4 @@
 | Turnip (mule) | turnip.jpg | [Mule photo, Sogospelman](https://commons.wikimedia.org/wiki/File:Mule_%281%29.jpg) | CC BY 2.5 |
 | Varrick | varrick.jpg | [Leonardo da Vinci, Head of a Warrior](https://commons.wikimedia.org/wiki/File:Il_Condottiere.jpg) | PD |
 
-Cropped to 1020x960 for this kit. Public-domain (PD) and CC0 works carry no restrictions; CC BY / CC BY-SA photos keep their original licence and author credit as linked.
+These sample pictures were cropped to 1020x960 before the one-picture format; any picture size works now. Public-domain (PD) and CC0 works carry no restrictions; CC BY / CC BY-SA photos keep their original licence and author credit as linked.
