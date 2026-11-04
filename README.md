@@ -45,6 +45,15 @@ Tap any character for their panel (spells, abilities, gear and bag), or open the
 - 🎚️ **Level-up interviews:** Claude never picks your choices for you.
 - ✅ **A pre-post checklist** Claude runs before every story post.
 
+## Requirements 📋
+
+- **A paid Claude plan** (Pro or above) with access to **Projects**, so the campaign can run as a project chat that opens story threads for you.
+- **Claude Opus**, at medium effort or above.
+- **Artifacts** turned on. The scene map is published as an Artifact.
+- **Internet access in the project's cloud environment** (step 3 below), so Claude can find portraits. Optional if you send your own pictures.
+- **Python 3 and Pillow** to build the scene map and crop portraits. Claude installs Pillow in its own cloud environment when needed; you don't install anything on your computer.
+- A web browser to download the kit and view the scene map. Nothing else: no dice, books or VTT.
+
 ## Quick start 🚀
 
 **1. Download the kit.** On this page, click the green **Code** button, then **Download ZIP**. Unzip it. You'll get a folder called `claude-the-dungeon-master-main`.
